@@ -159,7 +159,7 @@ contract MonetaryToken is StandardToken {
     function validLoanAddress(string checkVal) returns(bool valid) {
         uint256 i=0;
 
-        for(i; i<getGivenCount(); i++){
+        for(i; i<getLoanCount(); i++){
             if (loanAccounts[owner].openLoans[i] == checkVal) return false;
         }
 
