@@ -160,9 +160,13 @@ contract MonetaryToken is StandardToken {
         uint256 i=0;
 
         for(i; i<getLoanCount(); i++){
-            if (loanAccounts[owner].openLoans[i] == checkVal) return false;
+            if (compareStrings(loanAccounts[owner].openLoans[i],checkVal)) return false;
         }
 
         return true;
     }
+
+    function compareStrings (string a, string b) returns (bool){
+       return keccak256(a) == keccak256(b);
+   }
 }
