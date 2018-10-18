@@ -1,0 +1,90 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="work-done">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 10px;
+      }
+
+      table{
+        border-collapse: collapse;
+      }
+
+      th, td{
+        border: 1px solid black;
+        padding: 5px;
+      }
+
+    </style>
+
+    <iron-ajax auto
+      url="files/work-done.json"
+      method = "GET"
+      handleAs = "json"
+      last-response = "{{updates}}"
+      debounce-duration="300"></iron-ajax>
+
+    <div class="card">
+      <h1>Work Done by Individuals</h1>
+      <template is="dom-repeat" items="{{updates.items}}">
+        <div class="card">
+          <h3>[[item.Week]]</h3>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Hours</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <th>Colin</th>
+              <td>[[item.Colin.hour]]</td>
+              <td>[[item.Colin.work]]</td>
+            </tr>
+            <tr>
+              <th>Mackenzie</th>
+              <td>[[item.Mackenzie.hour]]</td>
+              <td>[[item.Mackenzie.work]]</td>
+            </tr>
+            <tr>
+              <th>Nathan</th>
+              <td>[[item.Nathan.hour]]</td>
+              <td>[[item.Nathan.work]]</td>
+            </tr>
+            <tr>
+              <th>Sadaf</th>
+              <td>[[item.Sadaf.hour]]</td>
+              <td>[[item.Sadaf.work]]</td>
+            </tr>
+            <tr>
+              <th>William</th>
+              <td>[[item.William.hour]]</td>
+              <td>[[item.William.work]]</td>
+            </tr>
+          </table>
+        </div>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    class WorkDone extends Polymer.Element {
+      static get is() { return 'work-done'; }
+    }
+
+    window.customElements.define(WorkDone.is, WorkDone);
+  </script>
+</dom-module>

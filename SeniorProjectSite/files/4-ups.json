@@ -1,0 +1,24 @@
+{"items": [
+  {
+    "Week": "Week 1",
+    "Did": "Picked name, started project site, discusses requirements to gather, prepared for kickoff, discussed tracking methods, met coach, researched eth & blockchains",
+    "Plan": "Hold kickoff, gather reqs, determine deliverables, plan meetings, determine communication method, move site to team account, publish tracking on site, determine version control",
+    "Risk": "No communication w/ sponsors yet, new domain, environment setup, mismatched schedules",
+    "Need": ""
+  },
+  {
+    "Week": "Week 2",
+    "Did": "Met sponsor, sent request for website, determined version control, began researching domain",
+    "Plan": "Read Bitcoin & Ethereum papers, Start learning Quorum,Solidity, Read Colin's ERC 20 code (found in Team Drive) and test token on Metamask, Research the Vechain Tokenswap (from VEN (ERC 20) -> VET), Get on the Virtual Machine once Kurt gets it done, project synopsis, project info survey",
+    "Risk": "Unknown tech, undefined scope due to new topic (research), no communication, VM time/website",
+    "Need": ""
+  },
+  {
+    "Week": "Week 3",
+    "Did": "",
+    "Plan": "",
+    "Risk": "",
+    "Need": ""
+  }
+]
+}

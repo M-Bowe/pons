@@ -1,0 +1,82 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-ups">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 10px;
+      }
+
+      table{
+        border-collapse: collapse;
+      }
+
+      th{
+        min-width: 175px;
+      }
+
+      th, td{
+        border: 1px solid black;
+      }
+
+    </style>
+
+    <iron-ajax auto
+      url="files/4-ups.json"
+      method = "GET"
+      handleAs = "json"
+      last-response = "{{updates}}"
+      debounce-duration="300"></iron-ajax>
+
+    <div class="card">
+      <h1>4-Ups</h1>
+      <template is="dom-repeat" items="{{updates.items}}">
+        <div class="card">
+          <table>
+            <tr>
+              <th>Week</th>
+              <td>[[item.Week]]</td>
+            </tr>
+            <tr>
+              <th>What We Did</th>
+              <td>[[item.Did]]</td>
+            </tr>
+            <tr>
+              <th>What We Plan to Do</th>
+              <td>[[item.Plan]]</td>
+            </tr>
+            <tr>
+              <th>Risks</th>
+              <td>[[item.Risks]]</td>
+            </tr>
+            <tr>
+              <th>What We Need</th>
+              <td>[[item.Need]]</td>
+            </tr>
+          </table>
+        </div>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    class MyUps extends Polymer.Element {
+      static get is() { return 'my-ups'; }
+    }
+
+    window.customElements.define(MyUps.is, MyUps);
+  </script>
+</dom-module>

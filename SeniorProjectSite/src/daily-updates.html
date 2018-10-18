@@ -1,0 +1,50 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="daily-updates">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+    </style>
+
+    <iron-ajax auto
+      url="files/updates.json"
+      method = "GET"
+      handleAs = "json"
+      last-response = "{{updates}}"
+      debounce-duration="300"></iron-ajax>
+
+    <div class="card">
+      <h1>Updates</h1>
+      <template is="dom-repeat" items="{{updates.items}}">
+        <div class="card">
+          <b>[[item.timestamp]]</b><br>
+          <p>[[item.content]]</p>
+        </div>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    class DailyUpdates extends Polymer.Element {
+      static get is() { return 'daily-updates'; }
+    }
+
+    window.customElements.define(DailyUpdates.is, DailyUpdates);
+  </script>
+</dom-module>

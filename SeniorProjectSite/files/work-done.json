@@ -1,0 +1,19 @@
+{"items": [
+  {
+    "Week": "Week 1",
+    "Colin": {"hour": 2, "work": ""},
+    "Mackenzie": {"hour": 2, "work": ""},
+    "Nathan": {"hour": 2, "work": ""},
+    "Sadaf": {"hour": 2, "work": ""},
+    "William": {"hour": 2, "work": ""}
+  },
+  {
+    "Week": "Week 2",
+    "Colin": {"hour": 4, "work": "Meeting w/ sponsors, discussed plans moving forward, got learning materials to team, reached out to sponsers for slack and email"},
+    "Mackenzie": {"hour": 4, "work": "Researching topic, meeting sponsors, notetaking and timesheet tracking, document creation"},
+    "Nathan": {"hour": 4, "work": "set up trello, created team site, meet with sponsers and had dinner to get to know them."},
+    "Sadaf": {"hour": 4, "work": "Meeting w/ sponsors, discussed plans moving forward, got learning materials to team"},
+    "William": {"hour": 4, "work": "request VM from Kurt and Meet with sponsors"}
+  }
+]
+}
