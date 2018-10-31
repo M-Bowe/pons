@@ -1,4 +1,4 @@
-package com.pons.Bridge;
+package com.pons.bridge;
 
 import java.math.BigDecimal;
 
@@ -17,8 +17,7 @@ import org.web3j.tx.gas.DefaultGasProvider;
 import org.web3j.utils.Convert;
 import org.web3j.utils.Numeric;
 
-import com.pons.Bridge.generatedContracts.ERC20Contract;
-import com.pons.Contracts.MonetaryToken;
+import com.pons.contracts.MonetaryToken;
 
 /**
  * A simple web3j application that demonstrates a number of core features of web3j:
@@ -55,28 +54,27 @@ public class Application {
     private void run() throws Exception {
         // We start by creating a new web3j instance to connect to remote nodes on the network.
         // Note: if using web3j Android, use Web3jFactory.build(...
-        Web3j web3j = Web3j.build(new HttpService());  // FIXME: Enter your Infura token here;
-        System.out.println("Connected to Ethereum client version: "
-                + web3j.web3ClientVersion().send().getWeb3ClientVersion());
+        Web3j web3j = Web3j.build(new HttpService("http://localhost:22000"));  // FIXME: Enter your Infura token here;
+        System.out.println("Connected to Ethereum client version: " + web3j.web3ClientVersion().send().getWeb3ClientVersion());
 
         // We then need to load our Ethereum wallet file
         // FIXME: Generate a new wallet file using the web3j command line tools https://docs.web3j.io/command_line.html
         Credentials credentials =
                 WalletUtils.loadCredentials(
-                        "<password>",
-                        "/path/to/<walletfile>");
+                        "",
+                        "/home/quorum-examples/examples/7nodes/keys/key1");
         System.out.println("Credentials loaded");
 
         // FIXME: Request some Ether for the Rinkeby test network at https://www.rinkeby.io/#faucet
-        System.out.println("Sending 1 Wei ("
-                + Convert.fromWei("1", Convert.Unit.ETHER).toPlainString() + " Ether)");
-        TransactionReceipt transferReceipt = Transfer.sendFunds(
-                web3j, credentials,
-                "0x19e03255f667bdfd50a32722df860b1eeaf4d635",  // you can put any address here
-                BigDecimal.ONE, Convert.Unit.WEI)  // 1 wei = 10^-18 Ether
-                .send();
-        System.out.println("Transaction complete, view it at https://rinkeby.etherscan.io/tx/"
-                + transferReceipt.getTransactionHash());
+        //System.out.println("Sending 1 Wei ("
+        //        + Convert.fromWei("1", Convert.Unit.ETHER).toPlainString() + " Ether)");
+        //TransactionReceipt transferReceipt = Transfer.sendFunds(
+        //        web3j, credentials,
+        //        "0xed9d02e382b34818e88b88a309c7fe71e65f419d",  // you can put any address here
+        //        BigDecimal.ONE, Convert.Unit.WEI)  // 1 wei = 10^-18 Ether
+        //        .send();
+        //System.out.println("Transaction complete, view it at https://rinkeby.etherscan.io/tx/"
+        //        + transferReceipt.getTransactionHash());
 
         // Now lets deploy a smart contract
         System.out.println("Deploying smart contract");
