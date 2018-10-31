@@ -7,6 +7,7 @@ import javax.sql.rowset.WebRowSet;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.Contract;
@@ -79,9 +80,15 @@ public class Application {
         // Now lets deploy a smart contract
         System.out.println("Block Number: " + web3j.ethBlockNumber().send().getResult());
         System.out.println("Accounts on nodes:");
+        String accountStr = "";
         for(String account: web3j.ethAccounts().send().getAccounts()){
         	System.out.println(account);
+            accountStr = account;
         }
+        
+        String accountBalance = web3j.ethGetBalance(accountStr, DefaultBlockParameterName.LATEST).send().getBalance().toString();
+        System.out.println();
+        System.out.println("Current Account: " + accountStr + "\nBalance: "+ accountBalance);
         
         System.out.println();
         System.out.println("Credentials:");
