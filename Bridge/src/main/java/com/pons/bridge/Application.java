@@ -1,6 +1,7 @@
 package com.pons.bridge;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import javax.sql.rowset.WebRowSet;
 
@@ -57,7 +58,7 @@ public class Application {
         // Note: if using web3j Android, use Web3jFactory.build(...
         Web3j web3j = Web3j.build(new HttpService("http://localhost:22000"));  // FIXME: Enter your Infura token here;
         System.out.println("Connected to Ethereum client version: " + web3j.web3ClientVersion().send().getWeb3ClientVersion());
-
+        
         // We then need to load our Ethereum wallet file
         // FIXME: Generate a new wallet file using the web3j command line tools https://docs.web3j.io/command_line.html
         Credentials credentials =
@@ -97,16 +98,16 @@ public class Application {
         System.out.println();
         System.out.println("Deploying smart contract");
         ContractGasProvider contractGasProvider = new DefaultGasProvider();
-        
         MonetaryToken contract = MonetaryToken.deploy(
                 web3j,
                 credentials,
-                contractGasProvider
+                new BigInteger("0"),
+                new BigInteger("100000")
+                //contractGasProvider
                 ).send();
 
         String contractAddress = contract.getContractAddress();
         System.out.println("Smart contract deployed to address " + contractAddress);
-        System.out.println("View contract at https://rinkeby.etherscan.io/address/" + contractAddress);
 
         System.out.println("Value stored in remote smart contract: " + contract.totalSupply().send());
 
