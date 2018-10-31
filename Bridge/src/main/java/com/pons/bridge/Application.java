@@ -77,8 +77,20 @@ public class Application {
         //        + transferReceipt.getTransactionHash());
 
         // Now lets deploy a smart contract
+        System.out.println("Block Number: " + web3j.ethBlockNumber().send().getResult());
+        System.out.println("Accounts on nodes:");
+        for(String account: web3j.ethAccounts().send().getAccounts()){
+        	System.out.println(account);
+        }
+        
+        System.out.println();
+        System.out.println("Credentials:");
+        System.out.println(credentials.getAddress());
+        
+        System.out.println();
         System.out.println("Deploying smart contract");
         ContractGasProvider contractGasProvider = new DefaultGasProvider();
+        
         MonetaryToken contract = MonetaryToken.deploy(
                 web3j,
                 credentials,
