@@ -96,14 +96,14 @@ public class Application {
         System.out.println(credentials.getAddress());
         
         System.out.println();
+        System.out.println("Gas Price: " + MonetaryToken.GAS_PRICE);
+        System.out.println("Gas Limit: " + MonetaryToken.GAS_LIMIT);
         System.out.println("Deploying smart contract");
         ContractGasProvider contractGasProvider = new DefaultGasProvider();
         MonetaryToken contract = MonetaryToken.deploy(
                 web3j,
                 credentials,
-                MonetaryToken.GAS_PRICE,
-                MonetaryToken.GAS_LIMIT
-                //contractGasProvider
+                contractGasProvider
                 ).send();
 
         String contractAddress = contract.getContractAddress();
