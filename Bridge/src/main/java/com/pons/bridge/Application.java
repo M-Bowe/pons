@@ -101,8 +101,8 @@ public class Application {
         MonetaryToken contract = MonetaryToken.deploy(
                 web3j,
                 credentials,
-                new BigInteger("0"),
-                new BigInteger("100000")
+                MonetaryToken.GAS_PRICE,
+                MonetaryToken.GAS_LIMIT
                 //contractGasProvider
                 ).send();
 
