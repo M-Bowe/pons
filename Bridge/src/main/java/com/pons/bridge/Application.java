@@ -81,19 +81,16 @@ public class Application {
         // Now lets deploy a smart contract
         System.out.println("Block Number: " + web3j.ethBlockNumber().send().getResult());
         System.out.println("Accounts on nodes:");
-        String accountStr = "";
         for(String account: web3j.ethAccounts().send().getAccounts()){
         	System.out.println(account);
-            accountStr = account;
         }
-        
-        String accountBalance = web3j.ethGetBalance(accountStr, DefaultBlockParameterName.LATEST).send().getBalance().toString();
-        System.out.println();
-        System.out.println("Current Account: " + accountStr + "\nBalance: "+ accountBalance);
         
         System.out.println();
         System.out.println("Credentials:");
-        System.out.println(credentials.getAddress());
+        String accountStr = credentials.getAddress();
+        String accountBalance = web3j.ethGetBalance(accountStr, DefaultBlockParameterName.LATEST).send().getBalance().toString();
+        System.out.println("Account: " + accountStr);
+        System.out.println("Balance: "+ accountBalance);
         
         System.out.println();
         System.out.println("Deploying smart contract");
