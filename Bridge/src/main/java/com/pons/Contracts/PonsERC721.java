@@ -1,4 +1,4 @@
-package com.pons.Contracts;
+package com.pons.contracts;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

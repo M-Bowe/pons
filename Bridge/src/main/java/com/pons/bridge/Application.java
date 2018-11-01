@@ -20,6 +20,7 @@ import org.web3j.utils.Convert;
 import org.web3j.utils.Numeric;
 
 import com.pons.contracts.MonetaryToken;
+import com.pons.contracts.PonsERC721;
 
 /**
  * A simple web3j application that demonstrates a number of core features of web3j:
@@ -93,21 +94,29 @@ public class Application {
         System.out.println("Balance: "+ accountBalance);
         
         System.out.println();
-        System.out.println("Deploying smart contract");
+        System.out.println("Deploying smart contract ERC721");
         ContractGasProvider contractGasProvider = new DefaultGasProvider();
         System.out.println("Gas Price: " + contractGasProvider.getGasPrice(Contract.FUNC_DEPLOY));
         System.out.println("Gas Limit: " + contractGasProvider.getGasLimit(Contract.FUNC_DEPLOY));
-        MonetaryToken contract = MonetaryToken.deploy(
+        MonetaryToken erc20contract = MonetaryToken.deploy(
                 web3j,
                 credentials,
                 new BigInteger("0"),
                 MonetaryToken.GAS_LIMIT
                 ).send();
-
-        String contractAddress = contract.getContractAddress();
-        System.out.println("Smart contract deployed to address " + contractAddress);
-
-        System.out.println("Value stored in remote smart contract: " + contract.totalSupply().send());
+        String contractAddress = erc20contract.getContractAddress();
+        System.out.println("ERC20 Smart contract deployed to address " + contractAddress);
+        System.out.println("ERC20 Total Supply: " + erc20contract.totalSupply().send());
+        
+        PonsERC721 erc721Contract = PonsERC721.deploy(
+                web3j,
+                credentials,
+                new BigInteger("0"),
+                MonetaryToken.GAS_LIMIT
+                ).send();
+        contractAddress = erc721Contract.getContractAddress();
+        System.out.println("ERC721 Smart contract deployed to address " + contractAddress);
+        System.out.println("ERC721 Total Supply: " + erc721Contract.totalSupply().send());
 
         // Lets modify the value in our smart contract
         //TransactionReceipt transactionReceipt = contract.transfer(, _value)("Well hello again").send();
