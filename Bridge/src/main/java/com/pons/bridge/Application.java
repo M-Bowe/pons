@@ -94,7 +94,7 @@ public class Application {
         System.out.println("Balance: "+ accountBalance);
         
         System.out.println();
-        System.out.println("Deploying smart contract ERC721");
+        System.out.println("Deploying smart contract ERC20");
         ContractGasProvider contractGasProvider = new DefaultGasProvider();
         System.out.println("Gas Price: " + contractGasProvider.getGasPrice(Contract.FUNC_DEPLOY));
         System.out.println("Gas Limit: " + contractGasProvider.getGasLimit(Contract.FUNC_DEPLOY));
@@ -108,6 +108,8 @@ public class Application {
         System.out.println("ERC20 Smart contract deployed to address " + contractAddress);
         System.out.println("ERC20 Total Supply: " + erc20contract.totalSupply().send());
         
+        System.out.println();
+        System.out.println("Deploying smart contract ERC721");
         PonsERC721 erc721Contract = PonsERC721.deploy(
                 web3j,
                 credentials,
