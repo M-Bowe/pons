@@ -100,7 +100,8 @@ public class Application {
         MonetaryToken contract = MonetaryToken.deploy(
                 web3j,
                 credentials,
-                contractGasProvider
+                new BigInteger("0"),
+                MonetaryToken.GAS_LIMIT
                 ).send();
 
         String contractAddress = contract.getContractAddress();
