@@ -21,9 +21,9 @@ public class MasterNode {
 	
 	private MasterNode(){
 		try {
-			web3j = Web3j.build(new HttpService("http://localhost:22000"));
+			web3j = Web3j.build(new HttpService("${web3j.node.path}"));
 			System.out.println("Connected to Ethereum client version: " + web3j.web3ClientVersion().send().getWeb3ClientVersion());
-			credentials = WalletUtils.loadCredentials("", "/home/quorum-examples/examples/7nodes/keys/key1");
+			credentials = WalletUtils.loadCredentials("", "${web3j.node.ownerwallet}");
 		} catch (IOException | CipherException e) {
 			e.printStackTrace();
 			System.out.println("MasterNode failed to load master wallet");
