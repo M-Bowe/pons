@@ -16,7 +16,7 @@ import com.pons.services.InitService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
-@RequestMapping(value = "/init")
+@RequestMapping(value = "init")
 @EnableAutoConfiguration
 public class InitController {
 	
