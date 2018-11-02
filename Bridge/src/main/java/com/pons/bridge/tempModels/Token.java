@@ -1,4 +1,4 @@
-package com.pons.tempModels;
+package com.pons.bridge.tempModels;
 
 public class Token {
 

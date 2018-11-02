@@ -1,4 +1,4 @@
-package com.pons.responses;
+package com.pons.bridge.responses;
 
 public class ErrorResponse extends Response{
 	

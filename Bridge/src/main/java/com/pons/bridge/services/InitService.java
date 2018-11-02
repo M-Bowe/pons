@@ -1,11 +1,11 @@
-package com.pons.services;
+package com.pons.bridge.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pons.responses.Response;
-import com.pons.responses.SuccessfulResponse;
-import com.pons.web3j.CreateTokens;
+import com.pons.bridge.responses.Response;
+import com.pons.bridge.responses.SuccessfulResponse;
+import com.pons.bridge.web3j.CreateTokens;
 
 @Service("initService")
 public class InitService {

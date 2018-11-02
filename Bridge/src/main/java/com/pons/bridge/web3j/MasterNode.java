@@ -1,4 +1,4 @@
-package com.pons.web3j;
+package com.pons.bridge.web3j;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
 
-import com.pons.contracts.MonetaryToken;
-import com.pons.contracts.PonsERC721;
+import com.pons.bridge.contracts.MonetaryToken;
+import com.pons.bridge.contracts.PonsERC721;
 
 public class MasterNode {
 	

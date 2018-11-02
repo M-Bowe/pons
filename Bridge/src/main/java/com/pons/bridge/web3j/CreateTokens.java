@@ -1,12 +1,12 @@
-package com.pons.web3j;
+package com.pons.bridge.web3j;
 
 import org.springframework.stereotype.Service;
 import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
 import org.web3j.tx.gas.ContractGasProvider;
 
-import com.pons.contracts.MonetaryToken;
-import com.pons.contracts.PonsERC721;
+import com.pons.bridge.contracts.MonetaryToken;
+import com.pons.bridge.contracts.PonsERC721;
 
 @Service("createTokens")
 public class CreateTokens {

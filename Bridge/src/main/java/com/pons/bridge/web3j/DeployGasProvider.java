@@ -1,4 +1,4 @@
-package com.pons.web3j;
+package com.pons.bridge.web3j;
 
 import java.math.BigInteger;
 
