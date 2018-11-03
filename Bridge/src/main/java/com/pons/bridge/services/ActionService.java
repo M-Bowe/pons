@@ -8,8 +8,8 @@ import com.pons.bridge.responses.Response;
 import com.pons.bridge.responses.SuccessfulResponse;
 import com.pons.bridge.web3j.Transfer;
 
-@Service("actions")
-public class Actions {
+@Service("actionService")
+public class ActionService {
 
 	@Autowired
 	private Transfer transfer;

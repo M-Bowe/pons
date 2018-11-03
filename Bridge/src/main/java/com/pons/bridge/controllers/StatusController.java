@@ -10,22 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pons.bridge.responses.Response;
 import com.pons.bridge.services.ActionService;
 import com.pons.bridge.services.InitService;
-import com.pons.bridge.services.StatusService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
-@RequestMapping(value = "status")
+@RequestMapping(value = "transfer")
 @EnableAutoConfiguration
-public class TransferController {
+public class StatusController {
 	
 	@Autowired
-	public StatusService statusService;
+	public ActionService actions;
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/erc20Balance")
-    public Response transferERC20(@RequestParam("address") String address) {
-		System.out.println("Checking blance of " + address);
-		return statusService.getBalance(address);
+	@RequestMapping(method = RequestMethod.GET, value = "/erc20")
+    public Response transferERC20(@RequestParam("address") String toAddress, @RequestParam("value") String value) {
+		System.out.println("Transfering " + value + " to " + toAddress);
+		return actions.transferERC20(toAddress, value);
 	}
 	
 }
