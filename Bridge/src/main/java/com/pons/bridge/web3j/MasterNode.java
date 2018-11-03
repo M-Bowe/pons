@@ -24,7 +24,7 @@ public class MasterNode {
 		System.out.println("http://localhost:22000");
 		System.out.println("***********************\n\n");
 		try {
-			web3j = Web3j.build(new HttpService("${web3j.node.path}"));
+			web3j = Web3j.build(new HttpService("http://localhost:22000"));
 			System.out.println("Connected to Ethereum client version: " + web3j.web3ClientVersion().send().getWeb3ClientVersion());
 			credentials = WalletUtils.loadCredentials("", "/home/quorum-examples/examples/7nodes/keys/key1");
 		} catch (IOException | CipherException e) {
