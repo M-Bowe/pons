@@ -22,7 +22,7 @@ public class WalletStore {
 	public String createWallet(){
 		String walletFileName = null;
 		try {
-			walletFileName = WalletUtils.generateFullNewWalletFile("",new File("/keys/testKey"));
+			walletFileName = WalletUtils.generateFullNewWalletFile("",new File("/keys"));
 		} catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidAlgorithmParameterException | CipherException | IOException e) {
 			e.printStackTrace();
 		}

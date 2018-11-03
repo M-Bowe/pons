@@ -22,7 +22,7 @@ public class TokenFactory {
 	}
 		
 	public boolean createERC20(){
-		System.out.println("Deploying smart contract ERC721");
+		System.out.println("Deploying smart contract ERC20");
         ContractGasProvider contractGasProvider = new DeployGasProvider();
         MonetaryToken erc20contract;
         try{
