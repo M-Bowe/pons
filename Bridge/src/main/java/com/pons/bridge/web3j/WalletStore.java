@@ -17,22 +17,12 @@ import com.pons.bridge.contracts.MonetaryToken;
 import com.pons.bridge.contracts.PonsERC721;
 
 @Service("createWallet")
-public class CreateWallet {
-
-	private Web3j web3j;
-	private Credentials credentials;
-	private MasterNode masterNode;
-	
-	public CreateWallet(){
-		masterNode = MasterNode.getInstance();
-		web3j = masterNode.getWeb3j();
-		credentials = masterNode.getCredentials();
-	}
+public class WalletStore {
 	
 	public String createWallet(){
 		String walletFileName = null;
 		try {
-			walletFileName = WalletUtils.generateFullNewWalletFile("",new File("${web3j.keystore}"));
+			walletFileName = WalletUtils.generateFullNewWalletFile("",new File("/keys/testKey"));
 		} catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidAlgorithmParameterException | CipherException | IOException e) {
 			e.printStackTrace();
 		}

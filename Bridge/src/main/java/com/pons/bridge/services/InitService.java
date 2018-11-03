@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 
 import com.pons.bridge.responses.Response;
 import com.pons.bridge.responses.SuccessfulResponse;
-import com.pons.bridge.web3j.CreateTokens;
+import com.pons.bridge.web3j.TokenFactory;
 
 @Service("initService")
 public class InitService {
 
 	@Autowired
-	private CreateTokens createToken;
+	private TokenFactory createToken;
 	
 	public Response initERC20() {
 		boolean successful = createToken.createERC20();
