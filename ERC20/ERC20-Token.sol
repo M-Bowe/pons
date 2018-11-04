@@ -157,7 +157,7 @@ contract MonetaryToken is StandardToken {
         }
     }
 
-    function checkLockStatus(string local_pass, address checkAddress) public returns (bool success){
+    function checkLockStatus(string local_pass, address checkAddress) public pure returns (bool success){
         return compareStrings(passwords[checkAddress], local_pass);
     }
 
