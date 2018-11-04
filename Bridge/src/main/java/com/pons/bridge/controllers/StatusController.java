@@ -14,6 +14,7 @@ import com.pons.bridge.services.StatusService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "status")
 @EnableAutoConfiguration
