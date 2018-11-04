@@ -32,4 +32,27 @@ public class Transfer {
 		return trans.isStatusOK();
 	}
 	
+	public boolean changePassword(){
+		TransactionReceipt trans;
+		try {
+			trans = tokenFactory.loadERC20Token(masterNode.getCredentials()).setPassword("password123").send();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return trans.isStatusOK();
+	}
+	
+	public boolean checkLock(){
+		TransactionReceipt trans;
+		try {
+			trans = tokenFactory.loadERC20Token(masterNode.getCredentials()).checkLockStatus("password123", masterNode.getCredentials().getAddress()).send();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return trans.;
+	}
+	
+	
 }

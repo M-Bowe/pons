@@ -32,9 +32,4 @@ public class TransferController {
 		return actions.createWallet();
 	}
 
-
-
-}
-
-
 }

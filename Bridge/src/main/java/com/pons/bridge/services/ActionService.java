@@ -32,10 +32,4 @@ public class ActionService {
 		return new SuccessfulResponse("Wallet created", wallet.createWallet());
 	}
 
-	public Response generatePassword(){
-		// TODO: Replace with hashed value
-		password = "password123"
-		return new SuccessfulResponse("Password created: " + password, true)
-	}
-
 }
