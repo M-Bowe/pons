@@ -14,21 +14,21 @@ import com.pons.bridge.services.ActionService;
 @RequestMapping(value = "transfer")
 @EnableAutoConfiguration
 public class TransferController {
-	
+
 	@Autowired
 	public ActionService actions;
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/erc20")
     public Response transferERC20(@RequestParam("address") String toAddress, @RequestParam("value") String value) {
 		System.out.println("Transfering " + value + " to " + toAddress);
 		return actions.transferERC20(toAddress, value);
 	}
-	
-	@RequestMapping(method = RequestMethod.GET, value = "/createWallet")
+
+	@RequestMapping(method = RequestMethod.GET, value = "/init")
     public Response createWallet() {
 		System.out.println("Creating new Wallet");
 		return actions.createWallet();
 	}
-	
-}
 
+
+}
