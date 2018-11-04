@@ -83,6 +83,8 @@ contract StandardToken is Token {
     }
 
     mapping (address => uint256) balances;
+    mapping (address => bool) locked_status;
+    mapping (address => string) passwords;
     mapping (address => mapping (address => uint256)) allowed;
     uint256 public totalSupply;
     uint256 public circulatingSupply;
@@ -115,6 +117,10 @@ contract MonetaryToken is StandardToken {
     bool public is_locked;
     string public password;
 
+    // ^ Later will be changed to....
+    // passwords[address]
+    // locked_status[address]
+
     constructor() public {
         totalSupply = 1000000;                        // Update total supply (1000000 for example)
         balances[msg.sender] = totalSupply;           // Give the creator all initial tokens (100000 for example)
@@ -123,8 +129,8 @@ contract MonetaryToken is StandardToken {
         decimals = 18;                                // Amount of decimals for display purposes
         symbol = "MON";                               // Set the symbol for display purposes
         owner = msg.sender;                           // The creator is the one who owns the contract
-        password = '';
-        is_locked = false;
+        passwords[msg.sender] = '';
+        locked_status[msg.sender] = false;
     }
 
     /* Approves and then calls the receiving contract */
@@ -142,22 +148,30 @@ contract MonetaryToken is StandardToken {
 
     // Set the password
     function setPassword(string pass){
-        password = pass;
+        passwords[msg.sender] = pass;
     }
 
     // lock or unlock the contract
 
     function lockContract(string local_pass) returns (bool success){
-        if(compareStrings(password, local_pass)){
-            is_locked = true;
+        if(compareStrings(passwords[msg.sender], local_pass)){
+            locked_status[msg.sender] = true;
             return true;
         }
-        else if(!compareStrings(password, local_pass)){
-            is_locked = false;
+        else if(!compareStrings(passwords[msg.sender], local_pass)){
+            locked_status[msg.sender] = false;
             return false;
         }
     }
 
+    function checkLockStatus(string local_pass, address checkAddress) returns (bool success){
+        if(compareStrings(passwords[checkAddress], local_pass)){
+            return true;
+        }
+        else if(!compareStrings(passwords[checkAddress], local_pass)){
+            return false;
+        }
+    }
 
 
     // ALL BELOW THIS MAY BE DEPRICATED
@@ -193,6 +207,7 @@ contract MonetaryToken is StandardToken {
     }
 
     function compareStrings(string a, string b) public pure returns (bool){
+       if(keccak256(a) == '' || keccak256(b) == '') return false;
        return keccak256(a) == keccak256(b);
    }
 }
