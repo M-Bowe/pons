@@ -111,6 +111,9 @@ contract MonetaryToken is StandardToken {
     string public version = 'H1.0';       // human 0.1 standard. Just an arbitrary versioning scheme.
     address private owner;                // Whoever created the original contract
 
+    // locked when ready to swap
+    bool public is_locked;
+    string public password;
 
     constructor() public {
         totalSupply = 1000000;                        // Update total supply (1000000 for example)
@@ -120,7 +123,8 @@ contract MonetaryToken is StandardToken {
         decimals = 18;                                // Amount of decimals for display purposes
         symbol = "MON";                               // Set the symbol for display purposes
         owner = msg.sender;                           // The creator is the one who owns the contract
-
+        password = '';
+        is_locked = false;
     }
 
     /* Approves and then calls the receiving contract */
@@ -135,6 +139,28 @@ contract MonetaryToken is StandardToken {
         return true;
     }
 
+
+    // Set the password
+    function setPassword(string pass){
+        password = pass;
+    }
+
+    // lock or unlock the contract
+
+    function lockContract(string local_pass) returns (bool success){
+        if(compareStrings(password, local_pass)){
+            is_locked = true;
+            return true;
+        }
+        else if(!compareStrings(password, local_pass)){
+            is_locked = false;
+            return false;
+        }
+    }
+
+
+
+    // ALL BELOW THIS MAY BE DEPRICATED
     // A global structure of loans that have been opened (ERC721 Addresses)
     // Stored on the "owner" address.
     struct LoanAddresses {
