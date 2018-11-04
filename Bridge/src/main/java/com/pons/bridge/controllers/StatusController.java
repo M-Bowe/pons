@@ -24,7 +24,7 @@ public class StatusController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/erc20Balance")
     public Response transferERC20(@RequestParam("address") String address) {
-		System.out.println("Checking blance of " + address);
+		System.out.println("Checking balance of " + address);
 		return statusService.getBalance(address);
 	}
 	
