@@ -31,5 +31,11 @@ public class TransferController {
 		System.out.println("Creating new Wallet");
 		return actions.createWallet();
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/lock")
+    public Response lockTest() {
+		System.out.println("Testing Lock");
+		return actions.checkLock();
+	}
 
 }

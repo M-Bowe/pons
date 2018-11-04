@@ -44,14 +44,14 @@ public class Transfer {
 	}
 	
 	public boolean checkLock(){
-		TransactionReceipt trans;
+		Boolean isLockOk;
 		try {
-			trans = tokenFactory.loadERC20Token(masterNode.getCredentials()).checkLockStatus("password123", masterNode.getCredentials().getAddress()).send();
+			isLockOk = tokenFactory.loadERC20Token(masterNode.getCredentials()).checkLockStatus("password123", masterNode.getCredentials().getAddress()).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		return trans.;
+		return isLockOk;
 	}
 	
 	
