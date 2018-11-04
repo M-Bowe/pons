@@ -113,13 +113,6 @@ contract MonetaryToken is StandardToken {
     string public version = 'H1.0';       // human 0.1 standard. Just an arbitrary versioning scheme.
     address private owner;                // Whoever created the original contract
 
-    // locked when ready to swap
-    bool public is_locked;
-    string public password;
-
-    // ^ Later will be changed to....
-    // passwords[address]
-    // locked_status[address]
 
     constructor() public {
         totalSupply = 1000000;                        // Update total supply (1000000 for example)
@@ -164,13 +157,8 @@ contract MonetaryToken is StandardToken {
         }
     }
 
-    function checkLockStatus(string local_pass, address checkAddress) returns (bool success){
-        if(compareStrings(passwords[checkAddress], local_pass)){
-            return true;
-        }
-        else if(!compareStrings(passwords[checkAddress], local_pass)){
-            return false;
-        }
+    function checkLockStatus(string local_pass, address checkAddress) public returns (bool success){
+        return compareStrings(passwords[checkAddress], local_pass);
     }
 
 
