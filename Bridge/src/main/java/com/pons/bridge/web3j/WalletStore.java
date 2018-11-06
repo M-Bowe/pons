@@ -19,23 +19,26 @@ import com.pons.bridge.contracts.PonsERC721;
 @Service("createWallet")
 public class WalletStore {
 	
-	private final String WALLET_DIRECTORY = "/keystore";
+	private final String WALLET_DIRECTORY = "/home/pons/Bridge/keystore";
 	
-	private File file;
+	private File storeLocation;
 	
 	public WalletStore(){
-		file = new File(WALLET_DIRECTORY);
-		file.mkdir();
+		storeLocation = new File(WALLET_DIRECTORY);
+		storeLocation.mkdir();
 	}
 	
 	public String createWallet(){
-		String walletFileName = null;
+		String walletPublicKey = null;
 		try {
-			walletFileName = WalletUtils.generateFullNewWalletFile("", file);
+			String walletFileName = WalletUtils.generateFullNewWalletFile("", storeLocation);
+			File newWallet = new File(WALLET_DIRECTORY + "/" + walletFileName);
+			newWallet.renameTo(new File(WALLET_DIRECTORY + "/" + "testWallet"));
+			walletPublicKey = WalletUtils.loadCredentials("", newWallet).getAddress();
 		} catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidAlgorithmParameterException | CipherException | IOException e) {
 			e.printStackTrace();
 		}
-		return walletFileName;
+		return walletPublicKey;
 	}
    
 }
