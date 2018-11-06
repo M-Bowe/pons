@@ -34,7 +34,7 @@ public class WalletStore {
 			String walletFileName = WalletUtils.generateFullNewWalletFile("", storeLocation);
 			File createdWallet = new File(WALLET_DIRECTORY + "/" + walletFileName);
 			File newWallet = new File(WALLET_DIRECTORY + "/" + "testWallet.json");
-			newWallet.renameTo(newWallet);
+			createdWallet.renameTo(newWallet);
 			walletPublicKey = WalletUtils.loadCredentials("", newWallet).getAddress();
 		} catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidAlgorithmParameterException | CipherException | IOException e) {
 			e.printStackTrace();
