@@ -19,10 +19,19 @@ import com.pons.bridge.contracts.PonsERC721;
 @Service("createWallet")
 public class WalletStore {
 	
+	private final String WALLET_DIRECTORY = "/keystore";
+	
+	private File file;
+	
+	public WalletStore(){
+		file = new File(WALLET_DIRECTORY);
+		file.mkdir();
+	}
+	
 	public String createWallet(){
 		String walletFileName = null;
 		try {
-			walletFileName = WalletUtils.generateFullNewWalletFile("",new File("/keys"));
+			walletFileName = WalletUtils.generateFullNewWalletFile("", file);
 		} catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidAlgorithmParameterException | CipherException | IOException e) {
 			e.printStackTrace();
 		}
