@@ -24,12 +24,15 @@ contract EscrowERC20 {
         else return false;
     }
 
+    function testSD(address _ad) public {
+        selfdestruct(_ad);
+    }
+
     function freeFromEscrow(string _passcode) public returns (bool) {
         if(stringToBytes32(passcode) == stringToBytes32(_passcode)){
             selfdestruct(toERC20);
             return true;
         }
-
         else {
             selfdestruct(fromERC20);
             return false;
