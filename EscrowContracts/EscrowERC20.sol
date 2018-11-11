@@ -3,7 +3,6 @@ pragma solidity ^0.4.25;
 
 contract EscrowERC20 {
 
-    bool public canFree;
     address private owner;
     address private fromERC20;
     address private toERC20;
@@ -11,7 +10,6 @@ contract EscrowERC20 {
     uint256 private erc20Amount;
 
     constructor() public {
-        canFree = false;
         owner = msg.sender;
     }
 
@@ -26,19 +24,27 @@ contract EscrowERC20 {
         else return false;
     }
 
-    function freeFromEscrow(address _to) public {
-        if(msg.sender == owner){
-            if(canFree) selfdestruct(_to);
-            else selfdestruct(msg.sender);
+    function freeFromEscrow(string _passcode) public returns (bool) {
+        if(stringToBytes32(passcode) == stringToBytes32(_passcode)){
+            selfdestruct(toERC20);
+            return true;
         }
-    }
 
-    function switchBool() public returns (bool){
-        if(msg.sender == owner){
-            canFree = !canFree;
-            return canFree;
+        else {
+            selfdestruct(fromERC20);
+            return false;
         }
-        else return false;
+
+    }
+    function stringToBytes32(string memory source) internal pure returns (bytes32 result) {
+        bytes memory tempEmptyStringTest = bytes(source);
+        if (tempEmptyStringTest.length == 0) {
+            return 0x0;
+        }
+
+        assembly {
+            result := mload(add(source, 32))
+        }
     }
 
 }
