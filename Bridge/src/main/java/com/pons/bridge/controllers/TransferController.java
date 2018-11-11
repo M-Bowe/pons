@@ -27,9 +27,15 @@ public class TransferController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/escrowERC20")
-    public Response transferERC20(@RequestParam("passcode") String passcode) {
+    public Response transferEscrowERC20(@RequestParam("passcode") String passcode) {
 		System.out.println("Attempting to unlock EscrowERC20 Contract");
 		return actions.transferEscrowERC20(passcode);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/test")
+    public Response testDestruct(@RequestParam("account") String account) {
+		System.out.println("Self Destruct to: " + account);
+		return actions.testSelfDestruct(account);
 	}
 
 }

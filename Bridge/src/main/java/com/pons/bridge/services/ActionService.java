@@ -35,5 +35,13 @@ public class ActionService {
 		}
 		return new ErrorResponse("Funds have NOT been released");
 	}
+	
+	public Response testSelfDestruct(String account){
+		boolean successful = transfer.testEscrowERC20Destruct(account);
+		if(successful){
+			return new SuccessfulResponse("Funds have been released", true);
+		}
+		return new ErrorResponse("Funds have NOT been released");
+	}
 
 }
