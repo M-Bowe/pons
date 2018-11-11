@@ -13,6 +13,8 @@ contract EscrowERC20 {
         owner = msg.sender;
     }
 
+    function() public payable{}
+
     function setParams(address _from, address _to, string _passcode, uint256 quantity) public returns (bool){
         if(msg.sender == owner){
             fromERC20 = _from;
