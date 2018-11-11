@@ -41,4 +41,8 @@ public class EthereumStatus {
 			return null;
 		}
 	}
+	
+//	public void getTransactions(){
+//		web3j.eth
+//	}
 }

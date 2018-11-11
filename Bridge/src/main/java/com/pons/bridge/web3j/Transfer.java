@@ -31,28 +31,13 @@ public class Transfer {
 		}
 		return trans.isStatusOK();
 	}
-	
-	public boolean changePassword(){
-		TransactionReceipt trans;
+
+	public boolean escrowERC20Complete(String passcode) {
 		try {
-			trans = tokenFactory.loadERC20Token(masterNode.getCredentials()).setPassword("password123").send();
+			return tokenFactory.loadEscrowERC20(masterNode.getCredentials()).freeFromEscrow(passcode).send().isStatusOK();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		return trans.isStatusOK();
 	}
-	
-	public boolean checkLock(){
-		Boolean isLockOk;
-		try {
-			isLockOk = tokenFactory.loadERC20Token(masterNode.getCredentials()).checkLockStatus("password123", masterNode.getCredentials().getAddress()).send();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return isLockOk;
-	}
-	
-	
 }

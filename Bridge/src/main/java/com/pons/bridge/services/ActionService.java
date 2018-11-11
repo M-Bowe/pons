@@ -27,16 +27,13 @@ public class ActionService {
 		}
 		return new ErrorResponse(value + " has been transfered to " + toAddress);
 	}
-
-	public Response createWallet(){
-		return new SuccessfulResponse("Wallet created", wallet.createWallet());
-	}
 	
-	public Response checkLock(){
-		System.out.println("First Lock: " + transfer.checkLock());
-		System.out.println("Successfull Lock: " + transfer.changePassword());
-		System.out.println("Second Lock: " + transfer.checkLock());
-		return null;
+	public Response transferEscrowERC20(String passcode){
+		boolean successful = transfer.escrowERC20Complete(passcode);
+		if(successful){
+			return new SuccessfulResponse("Funds have been released", true);
+		}
+		return new ErrorResponse("Funds have NOT been released");
 	}
 
 }

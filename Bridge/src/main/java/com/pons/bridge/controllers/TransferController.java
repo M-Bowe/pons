@@ -25,17 +25,11 @@ public class TransferController {
 		System.out.println("Transfering " + value + " to " + toAddress);
 		return actions.transferERC20(toAddress, value);
 	}
-
-	@RequestMapping(method = RequestMethod.GET, value = "/init")
-    public Response createWallet() {
-		System.out.println("Creating new Wallet");
-		return actions.createWallet();
-	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/lock")
-    public Response lockTest() {
-		System.out.println("Testing Lock");
-		return actions.checkLock();
+	@RequestMapping(method = RequestMethod.GET, value = "/escrowERC20")
+    public Response transferERC20(@RequestParam("passcode") String passcode) {
+		System.out.println("Attempting to unlock EscrowERC20 Contract");
+		return actions.transferEscrowERC20(passcode);
 	}
 
 }

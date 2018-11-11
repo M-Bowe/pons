@@ -22,5 +22,10 @@ public class InitService {
 		boolean successful = createToken.createERC721();
 		return new SuccessfulResponse("Initialized", successful);
 	}
+
+	public Response initEscrowERC20(String from, String to, String passcode, String quantity) {
+		boolean successful = createToken.createEscrowERC20(from, to, passcode, quantity);
+		return new SuccessfulResponse("Initialized", successful);
+	}
 	
 }

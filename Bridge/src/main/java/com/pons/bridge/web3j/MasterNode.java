@@ -18,6 +18,7 @@ public class MasterNode {
 	private Credentials credentials;
 	private String erc20TokenAddress;
 	private String erc721ContractAddress;
+	private String escrowERC20ContractAddress;
 	
 	private MasterNode(){
 		System.out.println("\n\n***********************");
@@ -52,15 +53,23 @@ public class MasterNode {
 		return erc20TokenAddress;
 	}
 
-	public void setErc20TokenAddress(String erc20TokenAddress) {
-		this.erc20TokenAddress = erc20TokenAddress;
+	public void setErc20TokenAddress(String address) {
+		this.erc20TokenAddress = address;
 	}
 
 	public String getErc721ContractAddress() {
 		return erc721ContractAddress;
 	}
 
-	public void setErc721ContractAddress(String erc721ContractAddress) {
-		this.erc721ContractAddress = erc721ContractAddress;
+	public void setErc721ContractAddress(String address) {
+		this.erc721ContractAddress = address;
+	}
+	
+	public String getEscrowERC20ContractAddress() {
+		return escrowERC20ContractAddress;
+	}
+
+	public void setEscrowERC20ContractAddress(String address) {
+		this.escrowERC20ContractAddress = address;
 	}
 }
