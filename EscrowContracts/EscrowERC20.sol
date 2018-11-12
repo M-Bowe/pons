@@ -27,7 +27,7 @@ contract EscrowERC20 {
     }
 
     function testTransfer(address _existingContract) public returns (bool){
-        require(_existingContract.call(bytes4(keccak256("transfer(uint256)")),toERC20,erc20Amount));
+        require(_existingContract.call(bytes4(keccak256("transfer(address,uint256)")),toERC20,erc20Amount));
         return true;
     }
 
