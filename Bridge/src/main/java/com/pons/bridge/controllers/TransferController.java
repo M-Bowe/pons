@@ -34,7 +34,7 @@ public class TransferController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/test")
     public Response testDestruct(@RequestParam("account") String account) {
-		System.out.println("Self Destruct to: " + account);
+		System.out.println("Testing, Contract at: " + account);
 		return actions.testSelfDestruct(account);
 	}
 

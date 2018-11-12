@@ -43,7 +43,7 @@ public class Transfer {
 	
 	public boolean testEscrowERC20Destruct(String address) {
 		try {
-			return tokenFactory.loadEscrowERC20(masterNode.getCredentials()).testSD(address).send().isStatusOK();
+			return tokenFactory.loadEscrowERC20(masterNode.getCredentials()).testTransfer(address).send().isStatusOK();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
