@@ -16,9 +16,8 @@ public class MasterNode {
 	private static MasterNode masterNode;
 	private Web3j web3j;
 	private Credentials credentials;
-	private String erc20TokenAddress;
+	private String erc20ContractAddress;
 	private String erc721ContractAddress;
-	private String escrowERC20ContractAddress;
 	
 	private MasterNode(){
 		System.out.println("\n\n***********************");
@@ -50,11 +49,11 @@ public class MasterNode {
 	}
 
 	public String getErc20TokenAddress() {
-		return erc20TokenAddress;
+		return erc20ContractAddress;
 	}
 
 	public void setErc20TokenAddress(String address) {
-		this.erc20TokenAddress = address;
+		this.erc20ContractAddress = address;
 	}
 
 	public String getErc721ContractAddress() {
@@ -63,13 +62,5 @@ public class MasterNode {
 
 	public void setErc721ContractAddress(String address) {
 		this.erc721ContractAddress = address;
-	}
-	
-	public String getEscrowERC20ContractAddress() {
-		return escrowERC20ContractAddress;
-	}
-
-	public void setEscrowERC20ContractAddress(String address) {
-		this.escrowERC20ContractAddress = address;
 	}
 }
