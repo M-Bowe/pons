@@ -1,4 +1,7 @@
 pragma solidity ^0.4.24;
+
+import "./ERC721.sol";
+
 contract Loan is ERC721 {
     
     struct Loan{
@@ -16,7 +19,7 @@ contract Loan is ERC721 {
     function createLoan(string _name, address _to) public{
         require(owner == msg.sender); // Only the Owner can create Items
         uint id = items.length; // Item ID = Length of the Array Items
-        loans.push(Loan(_name,5)) // Loan(
+        loans.push(Loan(_name,5)); // Loan(
         _mint(_to,id); // Assigns the Token to the Ethereum Address that is specified
     }
     
