@@ -31,7 +31,7 @@ public class EscrowController {
 			@RequestParam("timelimit") String timelimit,
 			@RequestParam("passcode") String passcode
 			) {
-		System.out.println("Creating Escrow Contrcats");
+		System.out.println("Creating Escrow Contracts");
 		return escrowService.createContracts(erc20from, erc20to, erc20Amount, erc721from, erc721to, erc721Id, timelimit, passcode);
 	}
 	
