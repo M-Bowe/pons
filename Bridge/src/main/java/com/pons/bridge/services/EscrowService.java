@@ -1,5 +1,7 @@
 package com.pons.bridge.services;
 
+import java.math.BigInteger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +25,27 @@ public class EscrowService {
 	}
 
 	private String createERC721Chain(String erc721from, String erc721to, String erc721Id, String timelimit, String passcode) {
-		return escrowService.createEscrowOnERC721(erc721from, erc721to, erc721Id, passcode);
+		return escrowService.createEscrowOnERC721(erc721from, erc721to, new BigInteger(erc721Id), passcode);
 	}
 
 	private String createERC20Chain(String erc20from, String erc20to, String erc20Amount, String timelimit, String passcode) {
-		return escrowService.createEscrowOnERC20(erc20from, erc20to, erc20Amount, passcode);
+		return escrowService.createEscrowOnERC20(erc20from, erc20to, new BigInteger(erc20Amount), passcode);
+	}
+
+	public Response approveERC20(String address, String passcode) {
+		if(escrowService.approveERC20(address, passcode)){
+			return new SuccessfulResponse("Funds for ERC20 have been released", address);
+		}else{
+			return new ErrorResponse("Password Incorrect");
+		}
+	}
+	
+	public Response approveERC721(String address, String passcode) {
+		if(escrowService.approveERC721(address, passcode)){
+			return new SuccessfulResponse("Funds for ERC721 have been released", address);
+		}else{
+			return new ErrorResponse("Password Incorrect");
+		}
 	}
 
 }

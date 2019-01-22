@@ -35,4 +35,20 @@ public class EscrowController {
 		return escrowService.createContracts(erc20from, erc20to, erc20Amount, erc721from, erc721to, erc721Id, timelimit, passcode);
 	}
 	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/erc20/approve")
+	public Response approveERC20(
+			@RequestParam("address") String address,
+			@RequestParam("passcode") String passcode
+			){
+		return escrowService.approveERC20(address, passcode);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/erc721/approve")
+	public Response approveERC721(
+			@RequestParam("address") String address,
+			@RequestParam("passcode") String passcode
+			){
+		return escrowService.approveERC721(address, passcode);
+	}
 }
