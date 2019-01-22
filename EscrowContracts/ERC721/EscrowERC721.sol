@@ -27,7 +27,7 @@ contract EscrowERC721 {
     }
 
     function testTransfer(address _existingContract) public returns (bool){
-        require(_existingContract.call(bytes4(keccak256("transfer(address,uint256)")),toERC721,erc721ID));
+        require(_existingContract.call(bytes4(keccak256("transferFrom(address,address,uint256)")),fromERC721,toERC721,erc721ID));
         return true;
     }
 
