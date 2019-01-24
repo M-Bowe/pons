@@ -13,7 +13,7 @@ import com.pons.bridge.services.EscrowService;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "escrow")
+@RequestMapping(value = "/escrow")
 @EnableAutoConfiguration
 public class EscrowController {
 

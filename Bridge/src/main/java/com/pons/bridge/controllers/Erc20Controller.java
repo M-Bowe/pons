@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "erc20")
+@RequestMapping(value = "/erc20")
 @EnableAutoConfiguration
 public class Erc20Controller {
 	
