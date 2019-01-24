@@ -16,10 +16,10 @@ contract Loan is ERC721 {
         owner = msg.sender; // The Sender is the Owner; Ethereum Address of the Owner
     }
     
-    function createLoan(string _name, address _to) public{
+    function createLoan(string _name, address _to, uint _balance) public{
         require(owner == msg.sender); // Only the Owner can create Items
         uint id = loans.length; // Item ID = Length of the Array Items
-        loans.push(loan(_name,5)); // Loan(
+        loans.push(loan(_name,_balance)); 
         _mint(_to,id); // Assigns the Token to the Ethereum Address that is specified
     }
     
