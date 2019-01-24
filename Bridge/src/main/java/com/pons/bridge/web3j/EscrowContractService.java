@@ -34,7 +34,7 @@ public class EscrowContractService {
         EscrowERC721 escrowContract;
 		try {
 			escrowContract = EscrowERC721.deploy(erc721Web3j, credentials, gasProvider).send();
-			escrowContract.setParams(from, to, passcode, tokenId).sendAsync();
+			escrowContract.setParams(from, to, passcode, tokenId).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -49,7 +49,7 @@ public class EscrowContractService {
 		EscrowERC20 escrowContract;
 		try {
 			escrowContract = EscrowERC20.deploy(erc20Web3j, credentials, gasProvider).send();
-			escrowContract.setParams(from, to, passcode, quantity).sendAsync();
+			escrowContract.setParams(from, to, passcode, quantity).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
