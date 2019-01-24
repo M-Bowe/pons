@@ -57,7 +57,7 @@ public class ERC721ContractService {
 	public String getBalance(String address) {
 		Loan contract = loadERC721Token(credentials);
 		try {
-			return contract.send().toString();
+			return contract.balanceOf(address).send().toString();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
