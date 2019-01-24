@@ -7,9 +7,7 @@ import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
 import org.web3j.tx.gas.ContractGasProvider;
 
-import com.pons.bridge.contracts.EscrowContract;
 import com.pons.bridge.contracts.MonetaryToken;
-import com.pons.bridge.contracts.PonsERC721;
 
 @Service("erc20ContractService")
 public class ERC20ContractService {

@@ -9,7 +9,6 @@ import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
 
 import com.pons.bridge.contracts.MonetaryToken;
-import com.pons.bridge.contracts.PonsERC721;
 
 public class MasterNode {
 	

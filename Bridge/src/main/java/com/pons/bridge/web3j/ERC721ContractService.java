@@ -7,9 +7,8 @@ import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
 import org.web3j.tx.gas.ContractGasProvider;
 
-import com.pons.bridge.contracts.EscrowContract;
+import com.pons.bridge.contracts.Loan;
 import com.pons.bridge.contracts.MonetaryToken;
-import com.pons.bridge.contracts.PonsERC721;
 
 @Service("erc721ContractService")
 public class ERC721ContractService {
@@ -27,9 +26,9 @@ public class ERC721ContractService {
 	public boolean createERC721(){
         System.out.println("Deploying smart contract ERC721");
         ContractGasProvider contractGasProvider = new DeployGasProvider();
-        PonsERC721 erc721Contract;
+        Loan erc721Contract;
 		try {
-			erc721Contract = PonsERC721.deploy(web3j, credentials, contractGasProvider).send();
+			erc721Contract = Loan.deploy(web3j, credentials, contractGasProvider).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -40,14 +39,14 @@ public class ERC721ContractService {
         return true;
 	}
 	
-	public PonsERC721 loadERC721Token(Credentials credentials){
+	public Loan loadERC721Token(Credentials credentials){
 		String contractAddress = masterNode.getErc721ContractAddress();
 		ContractGasProvider contractGasProvider = new DeployGasProvider();
-		return PonsERC721.load(contractAddress, web3j, credentials, contractGasProvider);
+		return Loan.load(contractAddress, web3j, credentials, contractGasProvider);
 	}
 	
 	public void transfer(String address, String tokenID) {
-		PonsERC721 contract = loadERC721Token(credentials);
+		Loan contract = loadERC721Token(credentials);
 		try {
 			contract.safeTransferFrom(credentials.getAddress(), address, new BigInteger(tokenID));
 		} catch (Exception e) {
@@ -56,7 +55,7 @@ public class ERC721ContractService {
 	}
 
 	public String getBalance(String address) {
-		PonsERC721 contract = loadERC721Token(credentials);
+		Loan contract = loadERC721Token(credentials);
 		try {
 			return contract.balanceOf(address).send().toString();
 		} catch (Exception e) {
