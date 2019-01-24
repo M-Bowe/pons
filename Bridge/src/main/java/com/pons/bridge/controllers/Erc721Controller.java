@@ -38,5 +38,13 @@ public class Erc721Controller {
     public Response balance(@RequestParam("address") String address) {
 		return erc721Service.balance(address); 
 	}
-
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/createLoan")
+    public Response balance(
+    		@RequestParam("name") String name,
+    		@RequestParam("addressTo") String address,
+    		@RequestParam("balance") String balance
+    		) {
+		return erc721Service.mint(name, address, balance);
+	}
 }

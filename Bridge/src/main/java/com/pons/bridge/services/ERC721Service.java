@@ -32,4 +32,10 @@ public class ERC721Service {
 		return new SuccessfulResponse(address + " checking balance", balance);
 	}
 
+	public Response mint(String name, String address, String balance) {
+		if(erc721ContractService.mint(name, address, balance)){
+			return new SuccessfulResponse("Successfully Minted to " + address, address);
+		}
+		return new ErrorResponse("Issue Creating Loan");
+	}
 }
