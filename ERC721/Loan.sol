@@ -7,7 +7,6 @@ contract Loan is ERC721 {
     struct loan{
         string name; // Name of the loan
         uint balance; // Loan amount
-        uint id; // Loan id
     }
     
     loan[] public loans; // First Item has Index 0
@@ -19,9 +18,10 @@ contract Loan is ERC721 {
     
     function createLoan(string _name, address _to, uint _balance) public{
         require(owner == msg.sender); // Only the Owner can create Items
-        uint _id = loans.length; // Item ID = Length of the Array Items
-        loans.push(loan(_name,_balance, _id)); 
-        _mint(_to,_id); // Assigns the Token to the Ethereum Address that is specified
+        uint256 id = loans.length; // Item ID = Length of the Array Items
+        loans.push(loan(_name,_balance)); 
+        _mint(_to,id); // Assigns the Token to the Ethereum Address that is specified
     }
+    
     
 }

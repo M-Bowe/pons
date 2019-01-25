@@ -26,9 +26,12 @@ contract EscrowERC20 {
         else return false;
     }
 
-    function testTransfer(address _existingContract) public returns (bool){
-        require(_existingContract.call(bytes4(keccak256("transfer(address,uint256)")),toERC20,erc20Amount));
-        return true;
+    function freeFromEscrow(address _existingContract, string _pass) public returns (bool){
+        if (stringToBytes32(_pass) == stringToBytes32(passcode)){
+          require(_existingContract.call(bytes4(keccak256("transfer(address,uint256)")),toERC20,erc20Amount));
+          return true;
+        }
+        return false;
     }
 
     function testSD(address  _ad) public {
@@ -36,17 +39,8 @@ contract EscrowERC20 {
         selfdestruct(_ad);
     }
 
-    function freeFromEscrow(string _passcode) public returns (bool) {
-        if(stringToBytes32(passcode) == stringToBytes32(_passcode)){
-            selfdestruct(toERC20);
-            return true;
-        }
-        else {
-            selfdestruct(fromERC20);
-            return false;
-        }
 
-    }
+   
     function stringToBytes32(string memory source) internal pure returns (bytes32 result) {
         bytes memory tempEmptyStringTest = bytes(source);
         if (tempEmptyStringTest.length == 0) {
