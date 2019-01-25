@@ -72,7 +72,7 @@ public class EscrowContractService {
 	public boolean approveERC20(String address, String passcode) {
 		EscrowERC20 erc20 = loadEscrowfromERC20Chain(address);
 		try {
-			return erc20.freeFromEscrow(passcode).send().isStatusOK();
+			return erc20.freeFromEscrow(masterNode.getErc20TokenAddress(), passcode).send().isStatusOK();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -82,7 +82,7 @@ public class EscrowContractService {
 	public boolean approveERC721(String address, String passcode) {
 		EscrowERC721 erc721 = loadEscrowfromERC721Chain(address);
 		try {
-			return erc721.freeFromEscrow(passcode).send().isStatusOK();
+			return erc721.freeFromEscrow(masterNode.getErc721ContractAddress(), passcode).send().isStatusOK();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
