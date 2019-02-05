@@ -48,7 +48,7 @@ public class ERC721ContractService {
 	public void transfer(String address, String tokenID) {
 		Loan contract = loadERC721Token(credentials);
 		try {
-			contract.approve(address, new BigInteger(tokenID)).send();
+//			contract.approve(address, new BigInteger(tokenID)).send();
 			contract.safeTransferFrom(credentials.getAddress(), address, new BigInteger(tokenID)).send();
 		} catch (Exception e) {
 			e.printStackTrace();
