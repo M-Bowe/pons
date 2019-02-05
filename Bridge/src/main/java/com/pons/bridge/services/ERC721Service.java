@@ -22,9 +22,9 @@ public class ERC721Service {
 		return new SuccessfulResponse("Successfully Created ERC 721", true);
 	}
 	
-	public Response transfer(String address, String tokenId){
-		erc721ContractService.transfer(address, tokenId);
-		return new SuccessfulResponse("Transfered RokenId: " + tokenId + " to " + address, true);
+	public Response transfer(String addressFrom, String addressTo, String tokenId){
+		erc721ContractService.transfer(addressFrom, addressTo, tokenId);
+		return new SuccessfulResponse("Transfered RokenId: " + tokenId + " to " + addressTo, true);
 	}
 
 	public Response balance(String address) {

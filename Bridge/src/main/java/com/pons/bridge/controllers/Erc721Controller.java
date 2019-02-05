@@ -29,9 +29,10 @@ public class Erc721Controller {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/transfer")
     public Response transfer(
-    		@RequestParam("address") String address,
+    		@RequestParam("addressFrom") String addressFrom,
+    		@RequestParam("addressTo") String addressTo,
     		@RequestParam("tokenId") String tokenId) {
-		return erc721Service.transfer(address, tokenId); 
+		return erc721Service.transfer(addressFrom, addressTo, tokenId); 
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/balance")

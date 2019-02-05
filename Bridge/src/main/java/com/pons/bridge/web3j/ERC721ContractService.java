@@ -45,11 +45,11 @@ public class ERC721ContractService {
 		return Loan.load(contractAddress, web3j, credentials, contractGasProvider);
 	}
 	
-	public void transfer(String address, String tokenID) {
+	public void transfer(String addressFrom, String addressTo, String tokenID) {
 		Loan contract = loadERC721Token(credentials);
 		try {
 //			contract.approve(address, new BigInteger(tokenID)).send();
-			contract.safeTransferFrom(credentials.getAddress(), address, new BigInteger(tokenID)).send();
+			contract.safeTransferFrom(addressFrom, addressTo, new BigInteger(tokenID)).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
