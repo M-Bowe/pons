@@ -28,8 +28,7 @@ contract EscrowERC721 {
 
     function freeFromEscrow(address _existingContract, string _pass) public returns (bool){
         if (stringToBytes32(_pass) == stringToBytes32(passcode)){
-          return true;
-          require(_existingContract.call(bytes4(keccak256("transferFrom(address,address,uint256)")),fromERC721,toERC721,erc721ID));
+          require(_existingContract.call(bytes4(keccak256("transfer(address,uint256)")),toERC721,erc721ID));
           return true;
         }
         return false;
