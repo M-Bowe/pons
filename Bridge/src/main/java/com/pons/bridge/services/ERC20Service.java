@@ -19,7 +19,7 @@ public class ERC20Service {
 	
 	public Response createContract() {
 		erc20ContractService.createERC20();
-		return new SuccessfulResponse("Successfully Created Escrow", true);
+		return new SuccessfulResponse("Successfully Created ERC 20", true);
 	}
 	
 	public Response transfer(String address, String amount){

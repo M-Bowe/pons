@@ -19,7 +19,7 @@ public class ERC721Service {
 	
 	public Response createContract() {
 		erc721ContractService.createERC721();
-		return new SuccessfulResponse("Successfully Created Escrow", true);
+		return new SuccessfulResponse("Successfully Created ERC 721", true);
 	}
 	
 	public Response transfer(String address, String tokenId){

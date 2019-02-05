@@ -41,12 +41,6 @@ public class EscrowContractService {
 			return null;
 		}
         String contractAddress = escrowContract.getContractAddress();
-        try{
-			Loan.load(masterNode.getErc721ContractAddress(), erc721Web3j, credentials, gasProvider).approve(contractAddress, tokenId).send();
-			System.out.println("Successfully approved 721 transfer");
-        } catch (Exception e){
-			e.printStackTrace();
-		}
         System.out.println("Escrow deployed to ERC721 Chain: " + contractAddress);
         return contractAddress;
 	}
