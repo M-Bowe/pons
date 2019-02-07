@@ -35,13 +35,20 @@ public class Erc721Controller {
 		return erc721Service.transfer(addressFrom, addressTo, tokenId); 
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/transfer_token")
+    public Response transferToken(
+    		@RequestParam("addressTo") String addressTo,
+    		@RequestParam("tokenId") String tokenId) {
+		return erc721Service.transferToken(addressTo, tokenId); 
+	}
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/balance")
     public Response balance(@RequestParam("address") String address) {
 		return erc721Service.balance(address); 
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/createLoan")
-    public Response balance(
+    public Response createLoan(
     		@RequestParam("name") String name,
     		@RequestParam("addressTo") String address,
     		@RequestParam("balance") String balance

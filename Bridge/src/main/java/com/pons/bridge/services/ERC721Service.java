@@ -43,4 +43,9 @@ public class ERC721Service {
 		erc721ContractService.approve(address, approved);
 		return new SuccessfulResponse("Attempted to approve " + address, address);
 	}
+
+	public Response transferToken(String addressTo, String tokenId) {
+		erc721ContractService.tranferToken(addressTo, tokenId);
+		return new SuccessfulResponse("Attempted to transfer " + tokenId + " to " + addressTo, addressTo);
+	}
 }
