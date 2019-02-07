@@ -24,5 +24,12 @@ contract Loan is ERC721 {
 
     }
     
+    function transfer_token(uint256 _id, address _to) public{
+      // need require(isValidToken(_id)
+      // need require(getApproved(_tokenId) == address(this))
+
+      transferFrom(ownerOf(_id),_to,_id);
+
+    }
     
 }
