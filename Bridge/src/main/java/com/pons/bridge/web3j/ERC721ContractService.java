@@ -68,7 +68,6 @@ public class ERC721ContractService {
 	public boolean mint(String name, String address, String balance) {
 		Loan contract = loadERC721Token(credentials);
 		try {
-			contract.approve(address, new BigInteger(tokenID)).send();
 			return contract.createLoan(name, address, new BigInteger(balance)).send().isStatusOK();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
