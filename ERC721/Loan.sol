@@ -21,7 +21,6 @@ contract Loan is ERC721 {
         uint256 id = loans.length; // Item ID = Length of the Array Items
         loans.push(loan(_name,_balance)); 
         _mint(_to,id); // Assigns the Token to the Ethereum Address that is specified
-        approve(_to,id);
 
     }
     
