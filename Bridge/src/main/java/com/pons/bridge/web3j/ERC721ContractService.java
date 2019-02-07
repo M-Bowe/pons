@@ -16,13 +16,13 @@ public class ERC721ContractService {
 	private Web3j web3j;
 	private Credentials credentials;
 	private MasterNode masterNode;
-	
+
 	public ERC721ContractService(){
 		masterNode = MasterNode.getInstance();
 		web3j = masterNode.getWeb3j();
 		credentials = masterNode.getCredentials();
 	}
-    
+
 	public boolean createERC721(){
         System.out.println("Deploying smart contract ERC721");
         ContractGasProvider contractGasProvider = new DeployGasProvider();
@@ -38,13 +38,13 @@ public class ERC721ContractService {
         masterNode.setErc721ContractAddress(erc721Contract.getContractAddress());
         return true;
 	}
-	
+
 	public Loan loadERC721Token(Credentials credentials){
 		String contractAddress = masterNode.getErc721ContractAddress();
 		ContractGasProvider contractGasProvider = new DeployGasProvider();
 		return Loan.load(contractAddress, web3j, credentials, contractGasProvider);
 	}
-	
+
 	public void transfer(String addressFrom, String addressTo, String tokenID) {
 		Loan contract = loadERC721Token(credentials);
 		try {
@@ -68,6 +68,7 @@ public class ERC721ContractService {
 	public boolean mint(String name, String address, String balance) {
 		Loan contract = loadERC721Token(credentials);
 		try {
+			contract.approve(address, new BigInteger(tokenID)).send();
 			return contract.createLoan(name, address, new BigInteger(balance)).send().isStatusOK();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
