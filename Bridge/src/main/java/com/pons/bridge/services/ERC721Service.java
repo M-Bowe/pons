@@ -39,8 +39,8 @@ public class ERC721Service {
 		return new ErrorResponse("Issue Creating Loan");
 	}
 
-	public Response setApprove(String address, boolean approved) {
-		erc721ContractService.approve(address, approved);
+	public Response setApprove(String address, String id) {
+		erc721ContractService.approve(address, id);
 		return new SuccessfulResponse("Attempted to approve " + address, address);
 	}
 

@@ -75,10 +75,10 @@ public class ERC721ContractService {
 		return false;
 	}
 
-	public void approve(String address, boolean approved) {
+	public void approve(String address, String id) {
 		Loan contract = loadERC721Token(credentials);
 		try {
-			contract.setApprovalForAll(address, approved).send();
+			contract.approve_token(new BigInteger(id), address).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

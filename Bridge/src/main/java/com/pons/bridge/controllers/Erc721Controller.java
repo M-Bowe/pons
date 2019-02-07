@@ -59,8 +59,8 @@ public class Erc721Controller {
 	@RequestMapping(method= RequestMethod.GET, value = "/approve")
 	public Response setApprove(
     		@RequestParam("addressTo") String address,
-    		@RequestParam("approve") boolean approved
+    		@RequestParam("id") String id
     		) {
-		return erc721Service.setApprove(address, approved);
+		return erc721Service.setApprove(address, id);
 	}
 }
