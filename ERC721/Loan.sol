@@ -23,6 +23,12 @@ contract Loan is ERC721 {
         _mint(_to,id); // Assigns the Token to the Ethereum Address that is specified
 
     }
+
+    function approve_token(uint256 _id, address _to) public {
+
+      emit Approval(ownerOf(_id), _to, _id);
+
+    }
     
     function transfer_token(uint256 _id, address _to) public{
       // need require(isValidToken(_id)
