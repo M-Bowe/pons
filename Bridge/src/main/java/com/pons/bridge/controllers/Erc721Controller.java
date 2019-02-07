@@ -48,4 +48,12 @@ public class Erc721Controller {
     		) {
 		return erc721Service.mint(name, address, balance);
 	}
+	
+	@RequestMapping(method= RequestMethod.GET, value = "/approve")
+	public Response setApprove(
+    		@RequestParam("addressTo") String address,
+    		@RequestParam("approve") boolean approved
+    		) {
+		return erc721Service.setApprove(address, approved);
+	}
 }

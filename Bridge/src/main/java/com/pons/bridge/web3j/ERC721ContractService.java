@@ -74,4 +74,13 @@ public class ERC721ContractService {
 		}
 		return false;
 	}
+
+	public void approve(String address, boolean approved) {
+		Loan contract = loadERC721Token(credentials);
+		try {
+			contract.setApprovalForAll(address, approved).send();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
