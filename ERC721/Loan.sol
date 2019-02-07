@@ -20,6 +20,7 @@ contract Loan is ERC721 {
         require(owner == msg.sender); // Only the Owner can create Items
         uint256 id = loans.length; // Item ID = Length of the Array Items
         loans.push(loan(_name,_balance)); 
+        approve(_to,id);
         _mint(_to,id); // Assigns the Token to the Ethereum Address that is specified
     }
     
