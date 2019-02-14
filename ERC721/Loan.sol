@@ -25,9 +25,7 @@ contract Loan is ERC721 {
     }
 
     function approve_token(uint256 _id, address _to) public {
-
       emit Approval(ownerOf(_id), _to, _id);
-
     }
     
     function transfer_token(uint256 _id, address _to) public{
