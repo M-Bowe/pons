@@ -145,7 +145,7 @@ contract ERC721 is ERC165, IERC721 {
   )
     public
   {
-    require(_isApprovedOrOwner(msg.sender, tokenId));
+    // require(_isApprovedOrOwner(msg.sender, tokenId));
     require(to != address(0));
 
     _clearApproval(from, tokenId);

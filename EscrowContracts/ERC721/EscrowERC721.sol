@@ -36,7 +36,7 @@ contract EscrowERC721 is IERC721Receiver{
     }
 	
 	function onERC721Received(address operator, address from, uint256 tokenId, bytes data) public returns(bytes4){
-        return bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
+        return bytes4(keccak256("onERC721Received(operator,address,uint256,bytes)"));
     }
 
     function stringToBytes32(string memory source) internal pure returns (bytes32 result) {
