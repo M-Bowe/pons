@@ -1,11 +1,17 @@
 package com.pons.bridge.web3j;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.util.List;
 
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameter;
+import org.web3j.protocol.core.DefaultBlockParameterName;
+import org.web3j.protocol.core.DefaultBlockParameterNumber;
+import org.web3j.protocol.core.methods.response.EthBlock;
 import org.web3j.protocol.http.HttpService;
 
 import com.pons.bridge.contracts.MonetaryToken;
@@ -61,5 +67,23 @@ public class MasterNode {
 
 	public void setErc721ContractAddress(String address) {
 		this.erc721ContractAddress = address;
+	}
+	
+	public List<EthBlock.TransactionResult> getTransactionsByBlockNum(String blockNum){
+		try {
+			return web3j.ethGetBlockByNumber(DefaultBlockParameter.valueOf(new BigInteger(blockNum)), true).send().getBlock().getTransactions();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public BigInteger getLatestBlockNum(){
+		try {
+			return web3j.ethGetBlockByNumber(DefaultBlockParameter.valueOf(new BigInteger(blockNum)), true).send().getBlock().getNumber();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
