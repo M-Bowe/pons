@@ -12,7 +12,7 @@ import com.pons.bridge.web3j.EscrowContractService;
 import com.pons.bridge.web3j.MasterNode;
 
 // TODO: Add block checking 
-@Service("erc20Service")
+@Service("blockchainService")
 public class BlockchainService {
 	
 	private MasterNode master;
