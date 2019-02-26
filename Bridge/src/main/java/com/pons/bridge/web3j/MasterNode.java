@@ -80,7 +80,7 @@ public class MasterNode {
 	
 	public BigInteger getLatestBlockNum(){
 		try {
-			return web3j.ethGetBlockByNumber(DefaultBlockParameter.valueOf(new BigInteger(blockNum)), true).send().getBlock().getNumber();
+			return web3j.ethGetBlockByNumber(DefaultBlockParameterName.LATEST, true).send().getBlock().getNumber();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
