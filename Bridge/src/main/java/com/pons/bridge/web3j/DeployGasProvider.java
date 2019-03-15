@@ -6,9 +6,9 @@ import org.web3j.tx.Contract;
 import org.web3j.tx.gas.StaticGasProvider;
 import org.web3j.tx.gas.DefaultGasProvider;
 
-public class DeployGasProvider extends StaticGasProvider {
+public class DeployGasProvider extends DefaultGasProvider {
 
-	public static final BigInteger GAS_LIMIT =  new BigInteger("100000");//DefaultGasProvider.GAS_LIMIT;
+	public static final BigInteger GAS_LIMIT = DefaultGasProvider.GAS_LIMIT;
     public static final BigInteger GAS_PRICE = new BigInteger("0");
 
 	public DeployGasProvider() {
