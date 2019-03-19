@@ -2,7 +2,7 @@ pragma solidity ^0.4.25;
 
 import "./IERC721Receiver.sol";
 
-contract EscrowERC721 is IERC721Receiver{
+contract EscrowERC721{
 
     address private owner;
     address private fromERC721;
@@ -33,10 +33,6 @@ contract EscrowERC721 is IERC721Receiver{
           return true;
         }
         return false;
-    }
-	
-    function onERC721Received(address operator, address from, uint256 tokenId, bytes data) public returns(bytes4){
-        return bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
     }
 
     function stringToBytes32(string memory source) internal pure returns (bytes32 result) {
