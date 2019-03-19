@@ -30,20 +30,9 @@ public class EscrowContractService {
 		gasProvider = new DeployGasProvider();
 	}
 	
-	public String createEscrowOnERC721(String from, String to, BigInteger tokenId, String passcode){
-        System.out.println("Deploying Escrow to ERC721 Chain");
-        EscrowERC721 escrowContract;
-		try {
-			escrowContract = EscrowERC721.deploy(erc721Web3j, credentials, gasProvider).send();
-			escrowContract.setParams(from, to, passcode, tokenId).send();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-        String contractAddress = escrowContract.getContractAddress();
-        System.out.println("Escrow deployed to ERC721 Chain: " + contractAddress);
-        return contractAddress;
-	}
+	/***************************************************************************************************************
+	 ************************************************ ERC 20 *******************************************************
+	 **************************************************************************************************************/
 	
 	public String createEscrowOnERC20(String from, String to, BigInteger quantity, String passcode){
 		System.out.println("Deploying Escrow to ERC20 Chain");
@@ -65,11 +54,6 @@ public class EscrowContractService {
 		return EscrowERC20.load(contractAddress, erc20Web3j, credentials, contractGasProvider);
 	}
 	
-	public EscrowERC721 loadEscrowfromERC721Chain(String contractAddress){
-		ContractGasProvider contractGasProvider = new DeployGasProvider();
-		return EscrowERC721.load(contractAddress, erc721Web3j, credentials, contractGasProvider);
-	}
-
 	public boolean approveERC20(String address, String passcode) {
 		EscrowERC20 erc20 = loadEscrowfromERC20Chain(address);
 		try {
@@ -79,9 +63,35 @@ public class EscrowContractService {
 		}
 		return false;
 	}
+	
+	/***************************************************************************************************************
+	 ************************************************ ERC 721 ******************************************************
+	 **************************************************************************************************************/
+	
+	public String createEscrowOnERC721(String from, String to, BigInteger tokenId, String passcode){
+        System.out.println("Deploying Escrow to ERC721 Chain");
+        EscrowERC721 escrowContract;
+		try {
+			escrowContract = EscrowERC721.deploy(erc721Web3j, credentials, gasProvider).send();
+			escrowContract.setParams(from, to, passcode, tokenId).send();
+			System.out.println("From: " + from + "  To: " + to + "  Passcode: " + passcode + "  TokenID: " + tokenId);		
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+        String contractAddress = escrowContract.getContractAddress();
+        System.out.println("Escrow deployed to ERC721 Chain: " + contractAddress);
+        return contractAddress;
+	}
+	
+	public EscrowERC721 loadEscrowfromERC721Chain(String contractAddress){
+		ContractGasProvider contractGasProvider = new DeployGasProvider();
+		return EscrowERC721.load(contractAddress, erc721Web3j, credentials, contractGasProvider);
+	}
 
 	public boolean approveERC721(String address, String passcode) {
 		EscrowERC721 erc721 = loadEscrowfromERC721Chain(address);
+		System.out.println("Addeess: " + address + "  Passcode: " + passcode + "  erc721Address: " + masterNode.getErc721ContractAddress());
 		try {
 			return erc721.freeFromEscrow(masterNode.getErc721ContractAddress(), passcode).send().isStatusOK();
 		} catch (Exception e) {

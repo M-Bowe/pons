@@ -45,15 +45,6 @@ public class ERC721ContractService {
 		return Loan.load(contractAddress, web3j, credentials, contractGasProvider);
 	}
 
-	public void transfer(String addressFrom, String addressTo, String tokenID) {
-		Loan contract = loadERC721Token(credentials);
-		try {
-			contract.safeTransferFrom(addressFrom, addressTo, new BigInteger(tokenID)).send();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public String getBalance(String address) {
 		Loan contract = loadERC721Token(credentials);
 		try {
@@ -73,15 +64,6 @@ public class ERC721ContractService {
 			e.printStackTrace();
 		}
 		return false;
-	}
-
-	public void approve(String address, String id) {
-		Loan contract = loadERC721Token(credentials);
-		try {
-			contract.approve_token(new BigInteger(id), address).send();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void tranferToken(String addressTo, String tokenId) {

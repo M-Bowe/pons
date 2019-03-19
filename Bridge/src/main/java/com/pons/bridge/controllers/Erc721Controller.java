@@ -27,14 +27,6 @@ public class Erc721Controller {
 		return erc721Service.createContract();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/transfer")
-    public Response transfer(
-    		@RequestParam("addressFrom") String addressFrom,
-    		@RequestParam("addressTo") String addressTo,
-    		@RequestParam("tokenId") String tokenId) {
-		return erc721Service.transfer(addressFrom, addressTo, tokenId); 
-	}
-	
 	@RequestMapping(method = RequestMethod.GET, value = "/transfer_token")
     public Response transferToken(
     		@RequestParam("addressTo") String addressTo,
@@ -54,13 +46,5 @@ public class Erc721Controller {
     		@RequestParam("balance") String balance
     		) {
 		return erc721Service.mint(name, address, balance);
-	}
-	
-	@RequestMapping(method= RequestMethod.GET, value = "/approve")
-	public Response setApprove(
-    		@RequestParam("addressTo") String address,
-    		@RequestParam("id") String id
-    		) {
-		return erc721Service.setApprove(address, id);
 	}
 }

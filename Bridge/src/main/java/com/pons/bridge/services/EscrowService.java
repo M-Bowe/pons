@@ -24,10 +24,6 @@ public class EscrowService {
 		return new SuccessfulResponse("Successfully Created Escrow", new EscrowAddresses(erc20EscrowAddress, erc721EscrowAddress));
 	}
 
-	private String createERC721Chain(String erc721from, String erc721to, String erc721Id, String timelimit, String passcode) {
-		return escrowService.createEscrowOnERC721(erc721from, erc721to, new BigInteger(erc721Id), passcode);
-	}
-
 	private String createERC20Chain(String erc20from, String erc20to, String erc20Amount, String timelimit, String passcode) {
 		return escrowService.createEscrowOnERC20(erc20from, erc20to, new BigInteger(erc20Amount), passcode);
 	}
@@ -38,6 +34,11 @@ public class EscrowService {
 		}else{
 			return new ErrorResponse("Password Incorrect");
 		}
+	}
+	
+
+	private String createERC721Chain(String erc721from, String erc721to, String erc721Id, String timelimit, String passcode) {
+		return escrowService.createEscrowOnERC721(erc721from, erc721to, new BigInteger(erc721Id), passcode);
 	}
 	
 	public Response approveERC721(String address, String passcode) {

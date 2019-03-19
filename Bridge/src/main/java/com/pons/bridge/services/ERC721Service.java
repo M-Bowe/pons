@@ -21,11 +21,6 @@ public class ERC721Service {
 		erc721ContractService.createERC721();
 		return new SuccessfulResponse("Successfully Created ERC 721", true);
 	}
-	
-	public Response transfer(String addressFrom, String addressTo, String tokenId){
-		erc721ContractService.transfer(addressFrom, addressTo, tokenId);
-		return new SuccessfulResponse("Transfered RokenId: " + tokenId + " to " + addressTo, true);
-	}
 
 	public Response balance(String address) {
 		String balance = erc721ContractService.getBalance(address);
@@ -37,11 +32,6 @@ public class ERC721Service {
 			return new SuccessfulResponse("Successfully Minted to " + address, address);
 		}
 		return new ErrorResponse("Issue Creating Loan");
-	}
-
-	public Response setApprove(String address, String id) {
-		erc721ContractService.approve(address, id);
-		return new SuccessfulResponse("Attempted to approve " + address, address);
 	}
 
 	public Response transferToken(String addressTo, String tokenId) {
