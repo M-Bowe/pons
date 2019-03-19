@@ -8,7 +8,7 @@ import org.web3j.tx.gas.DefaultGasProvider;
 
 public class DeployGasProvider extends StaticGasProvider {
 
-	public static final BigInteger GAS_LIMIT = new BigInteger("1_000_000_000");//DefaultGasProvider.GAS_LIMIT;
+	public static final BigInteger GAS_LIMIT = new BigInteger("100_000_000");//DefaultGasProvider.GAS_LIMIT;
   public static final BigInteger GAS_PRICE = new BigInteger("0");
 
 	public DeployGasProvider() {
