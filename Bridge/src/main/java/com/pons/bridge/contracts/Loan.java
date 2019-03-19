@@ -106,7 +106,7 @@ public class Loan extends Contract {
         return executeRemoteCallSingleValueReturn(function, Boolean.class);
     }
 
-    public RemoteCall<TransactionReceipt> transfer_token(BigInteger _id, String _to) {
+    public RemoteCall<TransactionReceipt> transferToken(BigInteger _id, String _to) {
         final Function function = new Function(
                 FUNC_TRANSFER_TOKEN, 
                 Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_id), 

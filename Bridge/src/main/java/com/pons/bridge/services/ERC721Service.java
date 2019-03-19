@@ -35,7 +35,7 @@ public class ERC721Service {
 	}
 
 	public Response transferToken(String addressTo, String tokenId) {
-		erc721ContractService.tranferToken(addressTo, tokenId);
+		erc721ContractService.transferToken(addressTo, tokenId);
 		return new SuccessfulResponse("Attempted to transfer " + tokenId + " to " + addressTo, addressTo);
 	}
 }

@@ -63,13 +63,14 @@ public class ERC721ContractService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		contract.
 		return false;
 	}
 
-	public void tranferToken(String addressTo, String tokenId) {
+	public void transferToken(String addressTo, String tokenId) {
 		Loan contract = loadERC721Token(credentials);
 		try {
-			contract.transfer_token(new BigInteger(tokenId), addressTo).send();
+			contract.transferToken(new BigInteger(tokenId), addressTo).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
