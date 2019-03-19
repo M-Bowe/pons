@@ -13,13 +13,14 @@ import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.DefaultBlockParameterNumber;
 import org.web3j.protocol.core.methods.response.EthBlock;
 import org.web3j.protocol.http.HttpService;
+import org.web3j.quorum.Quorum;
 
 import com.pons.bridge.contracts.MonetaryToken;
 
 public class MasterNode {
 	
 	private static MasterNode masterNode;
-	private Web3j web3j;
+	private Quorum web3j;
 	private Credentials credentials;
 	private String erc20ContractAddress;
 	private String erc721ContractAddress;
@@ -29,7 +30,7 @@ public class MasterNode {
 		System.out.println("http://localhost:22000");
 		System.out.println("***********************\n\n");
 		try {
-			web3j = Web3j.build(new HttpService("http://localhost:22000"));
+			web3j = Quorum.build(new HttpService("http://localhost:22000"));
 			System.out.println("Connected to Ethereum client version: " + web3j.web3ClientVersion().send().getWeb3ClientVersion());
 			credentials = WalletUtils.loadCredentials("", "/home/quorum-examples/examples/7nodes/keys/key1");
 		} catch (IOException | CipherException e) {
@@ -45,7 +46,7 @@ public class MasterNode {
 		return masterNode;
 	}
 
-	public Web3j getWeb3j() {
+	public Quorum getWeb3j() {
 		return web3j;
 	}
 	

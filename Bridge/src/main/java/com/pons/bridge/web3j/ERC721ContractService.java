@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import org.springframework.stereotype.Service;
 import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
+import org.web3j.quorum.Quorum;
 import org.web3j.tx.gas.ContractGasProvider;
 
 import com.pons.bridge.contracts.Loan;
@@ -13,7 +14,7 @@ import com.pons.bridge.contracts.MonetaryToken;
 @Service("erc721ContractService")
 public class ERC721ContractService {
 
-	private Web3j web3j;
+	private Quorum web3j;
 	private Credentials credentials;
 	private MasterNode masterNode;
 
@@ -63,14 +64,13 @@ public class ERC721ContractService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		contract.
 		return false;
 	}
 
 	public void transferToken(String addressTo, String tokenId) {
 		Loan contract = loadERC721Token(credentials);
 		try {
-			contract.transferToken(new BigInteger(tokenId), addressTo).send();
+			contract.transfer_token(new BigInteger(tokenId), addressTo).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import org.springframework.stereotype.Service;
 import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
+import org.web3j.quorum.Quorum;
 import org.web3j.tx.gas.ContractGasProvider;
 
 import com.pons.bridge.contracts.MonetaryToken;
@@ -12,7 +13,7 @@ import com.pons.bridge.contracts.MonetaryToken;
 @Service("erc20ContractService")
 public class ERC20ContractService {
 
-	private Web3j web3j;
+	private Quorum web3j;
 	private Credentials credentials;
 	private MasterNode masterNode;
 	
