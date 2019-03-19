@@ -29,13 +29,13 @@ contract EscrowERC721 is IERC721Receiver{
 
     function freeFromEscrow(address _existingContract, string _pass) public returns (bool){
         if (stringToBytes32(_pass) == stringToBytes32(passcode)){
-          require(_existingContract.call(bytes4(keccak256("transfer(address,uint256)")),toERC721,erc721ID));
+          require(_existingContract.call(bytes4(keccak256("transfer_token(uint256, address)")),erc721ID,toERC721));
           return true;
         }
         return false;
     }
 	
-	function onERC721Received(address operator, address from, uint256 tokenId, bytes data) public returns(bytes4){
+    function onERC721Received(address operator, address from, uint256 tokenId, bytes data) public returns(bytes4){
         return bytes4(keccak256("onERC721Received(operator,address,uint256,bytes)"));
     }
 
