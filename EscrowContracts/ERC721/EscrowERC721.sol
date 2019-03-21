@@ -1,8 +1,6 @@
 pragma solidity ^0.4.25;
 
-import "./IERC721Receiver.sol";
-
-contract EscrowERC721 is IERC721Receiver{
+contract EscrowERC721{
 
     address private owner;
     address private fromERC721;
