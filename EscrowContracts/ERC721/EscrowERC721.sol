@@ -2,7 +2,7 @@ pragma solidity ^0.4.25;
 
 import "./IERC721Receiver.sol";
 
-contract EscrowERC721{
+contract EscrowERC721 is IERC721Receiver{
 
     address private owner;
     address private fromERC721;
@@ -44,6 +44,10 @@ contract EscrowERC721{
         assembly {
             result := mload(add(source, 32))
         }
+    }
+	
+	function testConnection() public returns (bool){
+		return true;
     }
 
 }
