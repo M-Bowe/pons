@@ -29,4 +29,8 @@ public class BlockchainService {
 		return new SuccessfulResponse("Retreived Block", master.getTransactionsByBlockNum(blockNum));
 	}
 
+	public Response getTransactions(int numOfTransactions) {
+		return new SuccessfulResponse("Retreived " + numOfTransactions + " Transactions", master.getTransactions(numOfTransactions));
+	}
+
 }

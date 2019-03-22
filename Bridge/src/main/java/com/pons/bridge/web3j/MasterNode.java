@@ -2,6 +2,7 @@ package com.pons.bridge.web3j;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.web3j.crypto.CipherException;
@@ -86,5 +87,15 @@ public class MasterNode {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public List getTransactions(int numOfTransactions) {
+		ArrayList<EthBlock.TransactionResult> transactionList = new ArrayList<>();
+		int latestBlock = getLatestBlockNum().intValue();
+		while(transactionList.size() < numOfTransactions){
+			transactionList.addAll(getTransactionsByBlockNum(String.valueOf(latestBlock)));
+			latestBlock--;
+		}
+		return transactionList;
 	}
 }

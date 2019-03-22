@@ -27,8 +27,13 @@ public class BlockchainController {
 		return blockchainService.getLatestBlock();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/getBlock")
+	@RequestMapping(method = RequestMethod.GET, value = "/getCurrentBlockNum")
     public Response getTransactionsFromBlockNum(@RequestParam("blockNum") String blockNum) {
 		return blockchainService.getBlock(blockNum);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/getTransactions")
+    public Response getTransac(@RequestParam("num") int numOfTransactions) {
+		return blockchainService.getTransactions(numOfTransactions);
 	}
 }
