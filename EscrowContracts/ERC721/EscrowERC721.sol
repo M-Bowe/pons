@@ -1,8 +1,8 @@
 pragma solidity ^0.4.25;
 
-import "/home/pons/ERC721/Loan.sol";
+import "./IERC721Receiver.sol";
 
-contract EscrowERC721{
+contract EscrowERC721 is IERC721Receiver{
 
     address private owner;
     address private fromERC721;
@@ -28,12 +28,15 @@ contract EscrowERC721{
     }
 
     function freeFromEscrow(address _existingContract, string _pass) public returns (bool){
-	Loan my_loan = Loan(_existingContract);
         if (stringToBytes32(_pass) == stringToBytes32(passcode)){
-          my_loan.transfer_token(erc721ID, toERC721);
+          require(_existingContract.call(bytes4(keccak256("transfer_token(uint256,address)")),erc721ID,toERC721));
           return true;
         }
         return false;
+    }
+	
+	function onERC721Received(address operator, address from, uint256 tokenId, bytes data) public returns(bytes4){
+        return bytes4(keccak256("onERC721Received(operator,address,uint256,bytes)"));
     }
 
     function stringToBytes32(string memory source) internal pure returns (bytes32 result) {
@@ -45,10 +48,6 @@ contract EscrowERC721{
         assembly {
             result := mload(add(source, 32))
         }
-    }
-	
-	function testConnection() public returns (bool){
-		return true;
     }
 
 }
