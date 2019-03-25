@@ -1,6 +1,6 @@
 pragma solidity ^0.4.25;
 
-import "../../ERC721/Loan.sol";
+import "ERC721/Loan.sol";
 
 contract EscrowERC721{
 
