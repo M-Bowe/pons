@@ -1,6 +1,6 @@
 pragma solidity ^0.4.25;
 
-import "ERC721/Loan.sol";
+import "/home/pons/ERC721/Loan.sol";
 
 contract EscrowERC721{
 
@@ -28,9 +28,9 @@ contract EscrowERC721{
     }
 
     function freeFromEscrow(address _existingContract, string _pass) public returns (bool){
-  	Loan my_loan = Loan(_existingContract);
+	Loan my_loan = Loan(_existingContract);
         if (stringToBytes32(_pass) == stringToBytes32(passcode)){
-          require(my_loan.transfer_token(erc721ID,toERC721), "The remote call has failed");
+          my_loan.transfer_token(erc721ID, toERC721);
           return true;
         }
         return false;
