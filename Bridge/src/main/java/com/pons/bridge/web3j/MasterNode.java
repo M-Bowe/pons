@@ -92,7 +92,7 @@ public class MasterNode {
 	public List getTransactions(int numOfTransactions) {
 		ArrayList<EthBlock.TransactionResult> transactionList = new ArrayList<>();
 		int latestBlock = getLatestBlockNum().intValue();
-		while(transactionList.size() < numOfTransactions){
+		while(transactionList.size() < numOfTransactions && latestBlock >= 0){
 			transactionList.addAll(getTransactionsByBlockNum(String.valueOf(latestBlock)));
 			latestBlock--;
 		}
