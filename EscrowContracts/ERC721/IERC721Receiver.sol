@@ -26,6 +26,6 @@ contract IERC721Receiver {
     uint256 tokenId,
     bytes data
   )
-    public
+    external
     returns(bytes4);
 }
