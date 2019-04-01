@@ -1,21 +1,19 @@
 pragma solidity ^0.4.25;
 
-import "./IERC721Receiver.sol";
-
-contract EscrowERC721 is IERC721Receiver{
-
+contract EscrowERC721 {
+    
     address private owner;
     address private fromERC721;
     address private toERC721;
     string private passcode; // This is a SHA256 hashed passcode
     uint256 private erc721ID;
-
+    
     constructor() public {
         owner = msg.sender;
     }
-
+    
     function() public payable{}
-
+    
     function setParams(address _from, address _to, string _passcode, uint256 _id) public returns (bool){
         if(msg.sender == owner){
             fromERC721 = _from;
@@ -26,17 +24,20 @@ contract EscrowERC721 is IERC721Receiver{
         }
         else return false;
     }
+    
+    function createLoan(address _existingContract, string _name, uint _balance) public returns (bool) {
+        require(_existingContract.call(bytes4(keccak256("createLoan(string,address,uint256)")),_name,toERC721,_balance));
+
+        return true;
+    }
 
     function freeFromEscrow(address _existingContract, string _pass) public returns (bool){
         if (stringToBytes32(_pass) == stringToBytes32(passcode)){
-          require(_existingContract.call(bytes4(keccak256("transfer_token(uint256,address)")),erc721ID,toERC721));
-          return true;
+            require(_existingContract.call(bytes4(keccak256("transfer_token(uint256,address)")),erc721ID,toERC721));
+
+            return true;
         }
         return false;
-    }
-	
-	function onERC721Received(address operator, address from, uint256 tokenId, bytes data) public returns(bytes4){
-        return bytes4(keccak256("onERC721Received(operator,address,uint256,bytes)"));
     }
 
     function stringToBytes32(string memory source) internal pure returns (bytes32 result) {
@@ -44,10 +45,12 @@ contract EscrowERC721 is IERC721Receiver{
         if (tempEmptyStringTest.length == 0) {
             return 0x0;
         }
-
         assembly {
             result := mload(add(source, 32))
         }
     }
-
+    
+    function testConnection() public pure returns (bool){
+        return true;
+    }
 }
