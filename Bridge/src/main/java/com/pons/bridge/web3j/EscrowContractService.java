@@ -74,7 +74,7 @@ public class EscrowContractService {
         System.out.println("Deploying Escrow to ERC721 Chain");
         EscrowERC721 escrowContract;
 		try {
-			escrowContract = EscrowERC721.deploy(erc20Web3j, credentials, gasProvider).send();
+			escrowContract = EscrowERC721.deploy(erc721Web3j, credentials, gasProvider).send();
 			escrowContract.setParams(from, to, passcode, tokenId).send();
 			System.out.println("From: " + from + "  To: " + to + "  Passcode: " + passcode + "  TokenID: " + tokenId);
 		} catch (Exception e) {
@@ -88,7 +88,7 @@ public class EscrowContractService {
 
 	public EscrowERC721 loadEscrowfromERC721Chain(String contractAddress){
 		ContractGasProvider contractGasProvider = new DeployGasProvider();
-		return EscrowERC721.load(contractAddress, erc20Web3j, credentials, contractGasProvider);
+		return EscrowERC721.load(contractAddress, erc721Web3j, credentials, contractGasProvider);
 	}
 
 	public boolean approveERC721(String address, String passcode) {
