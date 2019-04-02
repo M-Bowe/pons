@@ -16,10 +16,10 @@ public class ERC721ContractService {
 
 	private Quorum web3j;
 	private Credentials credentials;
-	private MasterNode masterNode;
+	private MasterNode721 masterNode;
 
 	public ERC721ContractService(){
-		masterNode = MasterNode.getInstance();
+		masterNode = MasterNode721.getInstance();
 		web3j = masterNode.getWeb3j();
 		credentials = masterNode.getCredentials();
 	}

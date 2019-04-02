@@ -9,16 +9,16 @@ import com.pons.bridge.responses.SuccessfulResponse;
 import com.pons.bridge.tempModels.EscrowAddresses;
 import com.pons.bridge.web3j.ERC20ContractService;
 import com.pons.bridge.web3j.EscrowContractService;
-import com.pons.bridge.web3j.MasterNode;
+import com.pons.bridge.web3j.MasterNode20;
 
 // TODO: Add block checking 
 @Service("blockchainService")
 public class BlockchainService {
 	
-	private MasterNode master;
+	private MasterNode20 master;
 	
 	public BlockchainService(){
-		master = MasterNode.getInstance();
+		master = MasterNode20.getInstance();
 	}
 	
 	public Response getLatestBlock(){

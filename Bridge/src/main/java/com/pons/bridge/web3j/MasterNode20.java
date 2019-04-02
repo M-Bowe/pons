@@ -18,15 +18,14 @@ import org.web3j.quorum.Quorum;
 
 import com.pons.bridge.contracts.MonetaryToken;
 
-public class MasterNode {
+public class MasterNode20 {
 	
-	private static MasterNode masterNode;
+	private static MasterNode20 masterNode;
 	private Quorum web3j;
 	private Credentials credentials;
 	private String erc20ContractAddress;
-	private String erc721ContractAddress;
 	
-	private MasterNode(){
+	private MasterNode20(){
 		System.out.println("\n\n***********************");
 		System.out.println("http://localhost:22000");
 		System.out.println("***********************\n\n");
@@ -40,9 +39,9 @@ public class MasterNode {
 		}
 	}
 	
-	public static MasterNode getInstance(){
+	public static MasterNode20 getInstance(){
 		if(masterNode == null){
-			masterNode = new MasterNode();
+			masterNode = new MasterNode20();
 		}
 		return masterNode;
 	}
@@ -61,14 +60,6 @@ public class MasterNode {
 
 	public void setErc20TokenAddress(String address) {
 		this.erc20ContractAddress = address;
-	}
-
-	public String getErc721ContractAddress() {
-		return erc721ContractAddress;
-	}
-
-	public void setErc721ContractAddress(String address) {
-		this.erc721ContractAddress = address;
 	}
 	
 	public List<EthBlock.TransactionResult> getTransactionsByBlockNum(String blockNum){

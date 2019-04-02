@@ -15,10 +15,10 @@ public class ERC20ContractService {
 
 	private Quorum web3j;
 	private Credentials credentials;
-	private MasterNode masterNode;
+	private MasterNode20 masterNode;
 	
 	public ERC20ContractService(){
-		masterNode = MasterNode.getInstance();
+		masterNode = MasterNode20.getInstance();
 		web3j = masterNode.getWeb3j();
 		credentials = masterNode.getCredentials();
 	}

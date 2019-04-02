@@ -19,15 +19,15 @@ public class EscrowContractService {
 
 	private Quorum erc20Web3j;
 	private Quorum erc721Web3j;
-	private Credentials credentials;
-	private MasterNode masterNode;
+	private MasterNode20 masterNode20;
+	private MasterNode721 masterNode721;
 	private ContractGasProvider gasProvider;
 
 	public EscrowContractService(){
-		masterNode = MasterNode.getInstance();
-		erc20Web3j = masterNode.getWeb3j();
-		erc721Web3j = masterNode.getWeb3j();
-		credentials = masterNode.getCredentials();
+		masterNode20 = MasterNode20.getInstance();
+		masterNode721 = MasterNode721.getInstance();
+		erc20Web3j = masterNode20.getWeb3j();
+		erc721Web3j = masterNode721.getWeb3j();
 		gasProvider = new DeployGasProvider();
 	}
 
@@ -39,7 +39,7 @@ public class EscrowContractService {
 		System.out.println("Deploying Escrow to ERC20 Chain");
 		EscrowERC20 escrowContract;
 		try {
-			escrowContract = EscrowERC20.deploy(erc20Web3j, credentials, gasProvider).send();
+			escrowContract = EscrowERC20.deploy(erc20Web3j, masterNode20.getCredentials(), gasProvider).send();
 			escrowContract.setParams(from, to, passcode, quantity).send();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,14 +52,14 @@ public class EscrowContractService {
 
 	public EscrowERC20 loadEscrowfromERC20Chain(String contractAddress){
 		ContractGasProvider contractGasProvider = new DeployGasProvider();
-		return EscrowERC20.load(contractAddress, erc20Web3j, credentials, contractGasProvider);
+		return EscrowERC20.load(contractAddress, erc20Web3j, masterNode20.getCredentials(), contractGasProvider);
 	}
 
 	public boolean approveERC20(String address, String passcode) {
 		EscrowERC20 erc20 = loadEscrowfromERC20Chain(address);
-		System.out.println("Address: " + address + "  Passcode: " + passcode + "  erc20Address: " + masterNode.getErc20TokenAddress());
+		System.out.println("Address: " + address + "  Passcode: " + passcode + "  erc20Address: " + masterNode20.getErc20TokenAddress());
 		try {
-			return erc20.freeFromEscrow(masterNode.getErc20TokenAddress(), passcode).send().isStatusOK();
+			return erc20.freeFromEscrow(masterNode20.getErc20TokenAddress(), passcode).send().isStatusOK();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -74,7 +74,7 @@ public class EscrowContractService {
         System.out.println("Deploying Escrow to ERC721 Chain");
         EscrowERC721 escrowContract;
 		try {
-			escrowContract = EscrowERC721.deploy(erc721Web3j, credentials, gasProvider).send();
+			escrowContract = EscrowERC721.deploy(erc721Web3j, masterNode721.getCredentials(), gasProvider).send();
 			escrowContract.setParams(from, to, passcode, tokenId).send();
 			System.out.println("From: " + from + "  To: " + to + "  Passcode: " + passcode + "  TokenID: " + tokenId);
 		} catch (Exception e) {
@@ -88,14 +88,14 @@ public class EscrowContractService {
 
 	public EscrowERC721 loadEscrowfromERC721Chain(String contractAddress){
 		ContractGasProvider contractGasProvider = new DeployGasProvider();
-		return EscrowERC721.load(contractAddress, erc721Web3j, credentials, contractGasProvider);
+		return EscrowERC721.load(contractAddress, erc721Web3j, masterNode721.getCredentials(), contractGasProvider);
 	}
 
 	public boolean approveERC721(String address, String passcode) {
 		EscrowERC721 erc721 = loadEscrowfromERC721Chain(address);
-		System.out.println("Address: " + address + "  Passcode: " + passcode + "  erc721Address: " + masterNode.getErc721ContractAddress());
+		System.out.println("Address: " + address + "  Passcode: " + passcode + "  erc721Address: " + masterNode721.getErc721ContractAddress());
 		try {
-			return erc721.freeFromEscrow(masterNode.getErc721ContractAddress(), passcode).send().isStatusOK();
+			return erc721.freeFromEscrow(masterNode721.getErc721ContractAddress(), passcode).send().isStatusOK();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
