@@ -33,7 +33,7 @@ public class MasterNode {
 		try {
 			web3j = Quorum.build(new HttpService("http://localhost:22000"));
 			System.out.println("Connected to Ethereum client version: " + web3j.web3ClientVersion().send().getWeb3ClientVersion());
-			credentials = WalletUtils.loadCredentials("", "/home/quorum-examples/examples/7nodes/keys/key1");
+			credentials = WalletUtils.loadCredentials("", "/home/quorum-examples/examples/erc20Chain/keys/key1");
 		} catch (IOException | CipherException e) {
 			e.printStackTrace();
 			System.out.println("MasterNode failed to load");
