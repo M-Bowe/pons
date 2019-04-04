@@ -13,6 +13,7 @@ import com.pons.bridge.contracts.EscrowERC721;
 import com.pons.bridge.contracts.Loan;
 import com.pons.bridge.contracts.MonetaryToken;
 import com.pons.bridge.responses.Response;
+import com.pons.bridge.tempModels.EscrowParams;
 
 @Service("escrowContractService")
 public class EscrowContractService {
@@ -100,6 +101,34 @@ public class EscrowContractService {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public EscrowParams getEscrowParams(String escrow20address, String escrow721address) {
+		EscrowParams params = new EscrowParams();
+		
+		String e20to = null, e20from = null, e20Amount = null;
+		EscrowERC20 erc20 = loadEscrowfromERC20Chain(escrow20address);
+		try {
+			e20to = erc20.getTo().send();
+			e20from = erc20.getFrom().send();
+			e20Amount = erc20.getAmount().send().toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		params.setERC20Params(e20to, e20from, e20Amount);
+		
+		EscrowERC721 erc721 = loadEscrowfromERC721Chain(escrow721address);
+		String e721to = null, e721from = null, e721id = null;
+		try {
+			e721to = erc721.getTo().send();
+			e721from = erc721.getFrom().send();
+			e721id = erc721.getTokenId().send().toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		params.setERC721Params(e721to, e721from, e721id);
+		
+		return params;
 	}
 
 }

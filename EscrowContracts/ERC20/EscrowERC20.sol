@@ -25,6 +25,18 @@ contract EscrowERC20 {
         }
         else return false;
     }
+	
+	function getFrom() constant public returns(address from){
+		return fromERC20;
+	}
+	
+	function getTo() constant public returns(address to){
+		return toERC20;
+	}
+	
+	function getAmount() constant public returns(uint256){
+		return erc20Amount;
+	}
 
     function freeFromEscrow(address _existingContract, string _pass) public returns (bool){
         if (stringToBytes32(_pass) == stringToBytes32(passcode)){

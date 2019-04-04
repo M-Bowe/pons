@@ -51,4 +51,12 @@ public class EscrowController {
 		return escrowService.approveERC721(address, passcode);
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/viewEscrowParams")
+	public Response getEscrowParams(
+			@RequestParam("erc721EscrowAddress") String escrow721address,
+			@RequestParam("erc20EscrowAddress") String escrow20address
+			){
+		return escrowService.getEscrowParams(escrow20address, escrow721address);
+	}
+	
 }

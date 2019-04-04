@@ -16,7 +16,7 @@ contract EscrowERC721 is IERC721Receiver {
     
     function() public payable{}
     
-    function setParams(address _from, address _to, string _passcode, uint256 _id) public returns (bool){
+    function setParams(address _from, address _to, string _passcode, uint256 _id) public returns (bool success){
         if(msg.sender == owner){
             fromERC721 = _from;
             toERC721 = _to;
@@ -26,17 +26,27 @@ contract EscrowERC721 is IERC721Receiver {
         }
         else return false;
     }
+	
+	function getFrom() constant public returns(address from){
+		return fromERC721;
+	}
+	
+	function getTo() constant public returns(address to){
+		return toERC721;
+	}
+	
+	function getTokenId() constant public returns(uint256 id){
+		return erc721ID;
+	}
     
-    function createLoan(address _existingContract, string _name, uint _balance) public returns (bool) {
+    function createLoan(address _existingContract, string _name, uint _balance) public returns (bool success) {
         require(_existingContract.call(bytes4(keccak256("createLoan(string,address,uint256)")),_name,toERC721,_balance));
-
         return true;
     }
 
-    function freeFromEscrow(address _existingContract, string _pass) public returns (bool){
+    function freeFromEscrow(address _existingContract, string _pass) public returns (bool success){
         if (stringToBytes32(_pass) == stringToBytes32(passcode)){
             require(_existingContract.call(bytes4(keccak256("transfer_token(uint256,address)")),erc721ID,toERC721));
-
             return true;
         }
         return false;
@@ -50,10 +60,6 @@ contract EscrowERC721 is IERC721Receiver {
         assembly {
             result := mload(add(source, 32))
         }
-    }
-    
-    function testConnection() public pure returns (bool){
-        return true;
     }
 
     function onERC721Received(address _operator, address _from, uint256 _tokenId, bytes _data) external returns(bytes4){

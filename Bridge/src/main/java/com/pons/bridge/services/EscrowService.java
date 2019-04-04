@@ -9,6 +9,7 @@ import com.pons.bridge.responses.ErrorResponse;
 import com.pons.bridge.responses.Response;
 import com.pons.bridge.responses.SuccessfulResponse;
 import com.pons.bridge.tempModels.EscrowAddresses;
+import com.pons.bridge.tempModels.EscrowParams;
 import com.pons.bridge.web3j.EscrowContractService;
 
 // TODO: Add block checking 
@@ -47,6 +48,14 @@ public class EscrowService {
 		}else{
 			return new ErrorResponse("Password Incorrect");
 		}
+	}
+
+	public Response getEscrowParams(String escrow20address, String escrow721address) {		
+		EscrowParams params = escrowService.getEscrowParams(escrow20address, escrow721address);
+		if(params != null){
+			return new SuccessfulResponse("Escrow successfully found", params);
+		}
+		return new ErrorResponse("Escrows couldn't be found");
 	}
 
 }
