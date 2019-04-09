@@ -30,7 +30,7 @@ public class MasterNode721 {
 		System.out.println("http://localhost:22000");//3
 		System.out.println("***********************\n\n");
 		try {
-			web3j = Quorum.build(new HttpService("http://localhost:22004"));
+			web3j = Quorum.build(new HttpService("http://localhost:22000"));//3
 			System.out.println("Connected to Ethereum client version: " + web3j.web3ClientVersion().send().getWeb3ClientVersion());
 			credentials = WalletUtils.loadCredentials("", "/home/quorum-examples/examples/erc721Chain/keys/key1");
 		} catch (IOException | CipherException e) {
