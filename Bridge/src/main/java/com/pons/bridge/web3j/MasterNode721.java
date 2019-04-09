@@ -27,7 +27,7 @@ public class MasterNode721 {
 	
 	private MasterNode721(){
 		System.out.println("\n\n***********************");
-		System.out.println("http://localhost:22001");
+		System.out.println("http://localhost:22000");//3
 		System.out.println("***********************\n\n");
 		try {
 			web3j = Quorum.build(new HttpService("http://localhost:22004"));
