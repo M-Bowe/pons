@@ -22,6 +22,7 @@ public class EscrowService {
 	public Response createContracts(String erc20from, String erc20to, String erc20Amount, String erc721from, String erc721to, String erc721Id, String timelimit, String passcode) {
 		String erc20EscrowAddress = createERC20Chain(erc20from, erc20to, erc20Amount, timelimit, passcode);
 		String erc721EscrowAddress = createERC721Chain(erc721from, erc721to, erc721Id, timelimit, passcode);
+		System.out.println("Finished creating Escrow Contracts| " + erc20from + " <-> " + erc20to);
 		return new SuccessfulResponse("Successfully Created Escrow", new EscrowAddresses(erc20EscrowAddress, erc721EscrowAddress));
 	}
 
